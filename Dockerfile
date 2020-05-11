@@ -35,10 +35,6 @@ RUN mkdir -p /home/steam/steamcmd && cd /home/steam/steamcmd && \
 #Install the insurgency dedicated server and validate its file
 RUN set -x \
 	&& /home/steam/steamcmd/steamcmd.sh +login  anonymous +force_install_dir /home/steam/steamcmd/sandstorm/ +app_update 581330 validate +quit 
-
-#Create the basic variables so the server could be run withou a specific command if needed
-ENV HOSTNAME=Bla PORT=27102 QUERYPORT=27131
-
 #Set the workdir of the container to the binary directory. 
 #This is important, so users can override my "CMD" startpoint and are directly in the dir where the binaries are
 WORKDIR /home/steam/steamcmd/sandstorm/Insurgency/Binaries/Linux/
