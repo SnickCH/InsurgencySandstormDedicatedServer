@@ -2,7 +2,12 @@
 ## Insurgency Sandstorm – customisable dedicated server
 This repository contains a docker image with a dedicated server for Insurgency Sandstorm (vanilla) that you can fully customise to your need for coop and PVP servers. 
 
-This image will be build weekly so you don’t have to update anything inside a container. I tried to build the image as “best-practice” as possible and to document everything for you. More information with a full guide can be find on steam under the following link (will be provided in the future).
+This image will be build weekly so you don’t have to update anything inside a container. I tried to build the image as “best-practice” as possible and to document everything for you. 
+
+## Documentation
+In the future all documentation will be on GitHub (not on DockerHub): https://github.com/SnickCH/InsurgencySandstormDedicatedServer
+
+More information with a full guide about the insurgency dedicated server (how to start with docker for beginners) will provided in the future on the steam discussion forum.
 
 
 ## How to get the image
