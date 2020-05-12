@@ -26,7 +26,7 @@ docker run <docker parameters> image ./InsurgencyServer-Linux-Shipping <travel-p
 Full syntax example
 ```
 
-docker run -d --name sandstormserver \ #run as deamon
+docker run -d --name sandstorm \ #run as daemon
 	-p 29099:29099/tcp -p 29099:2099/udp \ #Port 2099 for RCON-Port
 	-p 27102:27102/tcp -p 27102:27102/udp \ #Port 27102 for ServerPort
 	-p 27131:27131 -p 27131:27131/udp \ #Port 27131 for QueryPort
@@ -39,6 +39,21 @@ docker run -d --name sandstormserver \ #run as deamon
 	-QueryPort=27131 \ #travelpath QueryPort
 	#here you can add any travelpath you like -Mapcycle
 ```
+
+# Update(s)
+Autobuilds will run on a weekly base for “latest”. If ther is a server update from Insurgency Sandstorm I will trigger the build earlier (if possible). 
+
+The idea is to use this the “container way” to just replace the container instead of updating anything inside the container. Your data will be static and will be loaded in the new container (if configured correctly with the ``` docker run``` commandThis makes it even faster for you. You can pull the newest image and during the download your “old” container is still running. Then you can just recreate the container and that’s it. Some code snippets for your scripts to automate this
+
+```
+docker pull snickch/insurgencysandstormdedicatedserver #download the newest image
+docker stop sandstormserver # Stop the container
+docker rm sandstormserver # delete the container
+docker run <SYNTAX> #use the syntax above to run the new container
+
+* sandstorm = container name from the syntax example (--name=sandstorm)
+```
+
 
 
 # Project status
@@ -67,4 +82,5 @@ This is my first docker project. If you need more information, find a bug or mis
 4) Add local docker sockets to run on the same VM/host a mRCON container and communicate locally to administrate the container. Status: future consideration
 
 5) Container scanning: during the build process the container will be scanned for known vulnerabilities. Status: planned
+
 
