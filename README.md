@@ -37,7 +37,7 @@ docker run -d --name sandstorm \ #run as daemon
 	./InsurgencyServer-Linux-Shipping \ #start the server
 	-Port=27102 \ #travelpath Serverport
 	-QueryPort=27131 \ #travelpath QueryPort
-	#here you can add any travelpath you like -Mapcycle
+	#here you can add any travelpath you need, like -Mapcycle -GSLTToken=xxxx etc.
 ```
 
 # Update(s)
