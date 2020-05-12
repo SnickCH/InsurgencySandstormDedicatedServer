@@ -14,7 +14,7 @@ or take image ```docker pull snickch/insurgencysandstormdedicatedserver
 
 Simple command syntax
 ```
-Docker run <docker parameters> image ./InsurgencyServer-Linux-Shipping <travel-parameters>
+docker run <docker parameters> image ./InsurgencyServer-Linux-Shipping <travel-parameters>
 ```
 
 Full syntax example
