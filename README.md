@@ -43,7 +43,7 @@ docker run -d --name sandstorm \ #run as daemon
 # Update(s)
 Autobuilds will run on a weekly base for “latest”. If ther is a server update from Insurgency Sandstorm I will trigger the build earlier (if possible).
 
-The idea is to use this the “container way” to just replace the container instead of updating anything inside the container. Your data will be static and will be loaded in the new container (if configured correctly with the ``` docker run``` commandThis makes it even faster for you. You can pull the newest image and during the download your “old” container is still running. Then you can just recreate the container and that’s it. Some code snippets for your scripts to automate this
+The idea is to use this the “container way” to just replace the container instead of updating anything inside the container. Your data will be static and will be loaded in the new container (if configured correctly with the ``` docker run``` command). This makes it even faster for you. You can pull the newest image and during the download your “old” container is still running. Then you can just recreate the container and that’s it. Some code snippets for your scripts to automate this
 
 ```
 docker pull snickch/insurgencysandstormdedicatedserver #download the newest image
