@@ -12,6 +12,7 @@ More information with a full guide about the insurgency dedicated server (how to
 
 # How to get the image
 ```docker pull snickch/insurgencysandstormdedicatedserver```
+
 Or you can run the full command (documented below). On the first run the container will be downloaded if it doesn't exist locally.
 
 
@@ -40,13 +41,23 @@ docker run -d --name sandstormserver \ #run as deamon
 ```
 
 
-# Project status, future plans and other information
+# Project status
 
 This is my first docker project. If you need more information, find a bug or mistakes in the documentation it is very appreciated if you contact me. If you need support it would be the best if you create a new thread in the steam discussion for dedicated servers.
 
 
 ## Timeline
 
+11.May 2020 – official public release
+
+11.May 2020 – official project created
+
+10.May 2020 – autobuild activated
+
+05.May 2020 – first build
+
+
+## Future considerations
 1) Write a full How-To starter guide for administrators with no docker knowhow to start with the container. Status: in work (Prio1)
 
 2) Add a second way to start the server in the container: Start the container with environment variables for testing purpose where not the full travel path is needed. Like “-hostname, -Port, -QueryPort”. Status: planned
