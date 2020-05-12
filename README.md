@@ -5,13 +5,13 @@ This repository contains a docker image with a dedicated server for Insurgency S
 This image will be build weekly so you don’t have to update anything inside a container. I tried to build the image as “best-practice” as possible and to document everything for you. 
 
 ## Documentation
-In the future all documentation will be on GitHub (not on DockerHub): https://github.com/SnickCH/InsurgencySandstormDedicatedServer
+In the future all documentation will be on GitHub: https://github.com/SnickCH/InsurgencySandstormDedicatedServer
 
 More information with a full guide about the insurgency dedicated server (how to start with docker for beginners) will provided in the future on the steam discussion forum.
 
-
 ## How to get the image
 ```docker pull snickch/insurgencysandstormdedicatedserver```
+Or you can run the full command (documented below). On the first run the container will be downloaded if it doesn't exist locally.
 
 ## How to launch
 
