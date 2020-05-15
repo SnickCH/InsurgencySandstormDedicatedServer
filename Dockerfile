@@ -1,20 +1,20 @@
 ###########################################################
 # Dockerfile that builds a Insurgency Sandstorm Gameserver 
 #(Steam App ID 581330)
-#Version 0.1
+#Version 0.2
 #Author: SnickCH - snick@morea.ch
 ###########################################################
 #Use debian:buster as the base image
-FROM debian:buster
+FROM debian:buster-slim
 
 #PUID=1000 to map the user steam to the docker standard group 1000 on the dockerhost
 ARG PUID=1000
 
 #Update the base image, install all dependencies, create the user steam 
 RUN apt-get update && apt-get install -y \
-	lib32stdc++6=8.3.0-6  \
-	lib32gcc1=1:8.3.0-6 \
-	ca-certificates=20190110  \
+	lib32stdc++6  \
+	lib32gcc1 \
+	ca-certificates  \
 	#libcurl3 \ 
         curl && \
         apt-get -y upgrade && \
@@ -35,6 +35,7 @@ RUN mkdir -p /home/steam/steamcmd && cd /home/steam/steamcmd && \
 #Install the insurgency dedicated server and validate its file
 RUN set -x \
 	&& /home/steam/steamcmd/steamcmd.sh +login  anonymous +force_install_dir /home/steam/steamcmd/sandstorm/ +app_update 581330 validate +quit 
+
 #Set the workdir of the container to the binary directory. 
 #This is important, so users can override my "CMD" startpoint and are directly in the dir where the binaries are
 WORKDIR /home/steam/steamcmd/sandstorm/Insurgency/Binaries/Linux/
