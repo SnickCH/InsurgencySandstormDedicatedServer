@@ -65,6 +65,8 @@ This is my first docker project. If you need more information, find a bug or mis
 
 ## Timeline
 
+15.05.2020 - The base image has been changed to debian:buster-slim When creating the image, the latest libraries are now used (no longer attached to a version)
+
 11.May 2020 – official public release
 
 11.May 2020 – official project created
@@ -85,3 +87,4 @@ This is my first docker project. If you need more information, find a bug or mis
 
 5) Container scanning: during the build process the container will be scanned for known vulnerabilities. Status: planned
 
+6) 6) Mod support "testing": Mods should be supported as long as they are for Linux. It is not tested yet, but there should be no reason why it should not work. Since it was asked, I will do this soon. Status: planned
