@@ -36,6 +36,9 @@ RUN mkdir -p /home/steam/steamcmd && cd /home/steam/steamcmd && \
 RUN set -x \
 	&& /home/steam/steamcmd/steamcmd.sh +login  anonymous +force_install_dir /home/steam/steamcmd/sandstorm/ +app_update 581330 validate +quit 
 
+#Create a Mods folder, so mods can be installed / downloaded. This directory can be mounted to the host to keep the files after the container is destroyes
+RUN mkdir -p /home/steam/steamcmd/sandstorm/Insurgency/Mods
+
 #Set the workdir of the container to the binary directory. 
 #This is important, so users can override my "CMD" startpoint and are directly in the dir where the binaries are
 WORKDIR /home/steam/steamcmd/sandstorm/Insurgency/Binaries/Linux/
