@@ -35,6 +35,7 @@ docker run -d --name sandstorm \ #run as daemon
 	--volume /home/debian/insurgency/Game.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Game.ini:ro \ #path to Game.ini
 	--volume /home/debian/insurgency/Admins.txt:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Admins.txt:ro \ #path to Admins.txt
 	--volume  /home/debian/insurgency/MapCycle.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/LinuxServer/MapCycle.txt:ro \ #path to MapCycle.txt
+	--volume  /home/debian/insurgency/Mods.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/LinuxServer/Mods.txt:ro \ #path to Mods.txt
 	snickch/insurgencysandstormdedicatedserver \ #image name
 	./InsurgencyServer-Linux-Shipping \ #start the server
 	-Port=27102 \ #travelpath Serverport
