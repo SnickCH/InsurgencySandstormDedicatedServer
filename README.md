@@ -65,7 +65,9 @@ This is my first docker project. If you need more information, find a bug or mis
 
 ## Timeline
 
-15.05.2020 - The base image has been changed to debian:buster-slim When creating the image, the latest libraries are now used (no longer attached to a version)
+18.May 2020 - Mods are now supported, as long as they work on Linux. To support this, I had to add an empty folder "Mods".Make sure your mods work with Linux before you use them with this container.
+
+15.May.2020 - The base image has been changed to debian:buster-slim When creating the image, the latest libraries are now used (no longer attached to a version)
 
 11.May 2020 – official public release
 
