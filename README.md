@@ -89,4 +89,4 @@ This is my first docker project. If you need more information, find a bug or mis
 
 5) Container scanning: during the build process the container will be scanned for known vulnerabilities. Status: planned
 
-6) 6) Mod support "testing": Mods should be supported as long as they are for Linux. It is not tested yet, but there should be no reason why it should not work. Since it was asked, I will do this soon. Status: planned
+6) Mod support: done. Works as long the mods are supported for Linux
