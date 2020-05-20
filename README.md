@@ -28,7 +28,7 @@ docker run <docker parameters> image ./InsurgencyServer-Linux-Shipping <travel-p
 Full syntax example
 ```
 
-docker run -d --name sandstorm \ #run as daemon
+docker run -d --name sandstorm \ #run as daemon, name the container "sandstorm"
 	-p 29099:29099/tcp -p 29099:2099/udp \ #Port 2099 for RCON-Port
 	-p 27102:27102/tcp -p 27102:27102/udp \ #Port 27102 for ServerPort
 	-p 27131:27131 -p 27131:27131/udp \ #Port 27131 for QueryPort
