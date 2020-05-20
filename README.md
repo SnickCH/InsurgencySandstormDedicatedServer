@@ -36,12 +36,15 @@ docker run -d --name sandstorm \ #run as daemon
 	--volume /home/debian/insurgency/Admins.txt:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Admins.txt:ro \ #path to Admins.txt
 	--volume /home/debian/insurgency/MapCycle.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/LinuxServer/MapCycle.txt:ro \ #path to MapCycle.txt
 	--volume /home/debian/insurgency/Mods.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/LinuxServer/Mods.txt:ro \ #path to Mods.txt
+	--volume /home/debian/insurgency/Mods/:/home/steam/steamcmd/sandstorm/Insurgency/Mods \ #path where you want to have the downloaded mods on your host system. On container restart / re-creation the mods stay static (not again downloaded)
 	snickch/insurgencysandstormdedicatedserver \ #image name
 	./InsurgencyServer-Linux-Shipping \ #start the server
 	-Port=27102 \ #travelpath Serverport
 	-QueryPort=27131 \ #travelpath QueryPort
 	#here you can add any travelpath you need, like -Mapcycle -GSLTToken=xxxx etc.
 ```
+If you don't use Mods you can just delete the two line with the ``` Mods.txt ``` and ```Mods``` folder. The same for ``` Engine.ini ``` or ``` Admin.txt ``` if you are not using it. On my host where docker is running, my path with the config is ``` /home/debian/insurgency/... ``` . You have to replace this with the path you are using.
+
 
 # Update(s)
 Autobuilds will run on a weekly base for “latest”. If ther is a server update from Insurgency Sandstorm I will trigger the build earlier (if possible).
