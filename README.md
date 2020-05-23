@@ -89,8 +89,6 @@ This is my first docker project. If you need more information, find a bug or mis
 
 3) Add a build badge so you have the status of the weekly build. This is at the moment not possible because my GitLab CI/CD project is private (where I do the auto builds) so I can’t share the badge here without setting the project to public. Here I’m looking for a workaround. Status: on hold, this has no priority and has the dependency to Gitlab.
 
-4) Add local docker sockets to run on the same VM/host a mRCON container and communicate locally to administrate the container. Status: future consideration
+4) Container scanning: during the build process the container will be scanned for known vulnerabilities. Status: planned
 
-5) Container scanning: during the build process the container will be scanned for known vulnerabilities. Status: planned
-
-6) Mod support: done. Works as long the mods are supported for Linux
+5) Mod support: done. Works as long the mods are supported for Linux
