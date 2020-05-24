@@ -25,7 +25,7 @@ Simple command syntax
 docker run <docker parameters> image ./InsurgencyServer-Linux-Shipping <travel-parameters>
 ```
 
-Full syntax example
+Full syntax example for Linux (docker)
 ```
 
 docker run -d --name sandstorm \ #run as daemon, name the container "sandstorm"
@@ -45,6 +45,9 @@ docker run -d --name sandstorm \ #run as daemon, name the container "sandstorm"
 ```
 If you don't use Mods you can just delete the two line with the ``` Mods.txt ``` and ```Mods``` folder. The same for ``` Engine.ini ``` or ``` Admin.txt ``` if you are not using it. On my host where docker is running, my path with the config is ``` /home/debian/insurgency/... ``` . You have to replace this with the path you are using.
 
+Full syntax example for Windows (docker) 
+
+``` in work, I will add this section soon. If anybody already adopted it for Windows, feel free to share it here```
 
 # Update(s)
 Autobuilds will run on a weekly base for “latest”. If ther is a server update from Insurgency Sandstorm I will trigger the build earlier (if possible).
@@ -95,3 +98,4 @@ This is my first docker project. If you need more information, find a bug or mis
 4) Container scanning: during the build process the container will be scanned for known vulnerabilities. Status: planned
 
 5) Mod support: done. Works as long the mods are supported for Linux
+6) Document how to run the command on docker for Windows: in work
