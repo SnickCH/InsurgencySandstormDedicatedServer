@@ -53,9 +53,12 @@ The idea is to use this the “container way” to just replace the container in
 
 ```
 docker pull snickch/insurgencysandstormdedicatedserver #download the newest image
-docker stop sandstorm #Stop the container
-docker rm sandstorm #delete the container
+docker stop sandstorm #Stop the container named "sandstorm"
+docker rm sandstorm #delete the container named "sandstorm"
 docker run <SYNTAX> #use the syntax above to run the new container
+#repeat the docker stop, docker rm, docker run part for all your containers / servers you are running on the host before you run the prune command. 
+#The prune command will only delete images that are not used, so it makes no sense if you still have container on the old image.
+docker images prune -a #deletes all unused container images
 
 * sandstorm = container name from the syntax example (--name=sandstorm)
 ```
