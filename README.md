@@ -4,13 +4,12 @@
 # Insurgency Sandstorm – customisable dedicated server
 This repository contains a docker image with a dedicated server for Insurgency Sandstorm (vanilla) that you can fully customise to your need for coop and PVP servers. 
 
-This image will be build weekly so you don’t have to update anything inside a container. I tried to build the image as “best-practice” as possible and to document everything for you. 
+This image will be build daily (since July 2020) so you don’t have to update anything inside a container. I tried to build the image as “best-practice” as possible and to document everything for you. If you have any questions or suggetions please feel free to contact me: snick@morea.ch or open an "issue" here on my project https://github.com/SnickCH/InsurgencySandstormDedicatedServer
 
 
 # Documentation
-In the future all documentation will be on GitHub: https://github.com/SnickCH/InsurgencySandstormDedicatedServer
+In the future all documentation will be on GitHub on this site: https://github.com/SnickCH/InsurgencySandstormDedicatedServer
 
-More information with a full guide about the insurgency dedicated server (how to start with docker for beginners) will provided in the future on the steam discussion forum.
 
 # How to get the image
 ```docker pull snickch/insurgencysandstormdedicatedserver```
@@ -70,11 +69,13 @@ docker images prune -a #deletes all unused container images
 
 # Project status
 
-This is my first docker project. If you need more information, find a bug or mistakes in the documentation it is very appreciated if you contact me. If you need support it would be the best if you create a new thread in the steam discussion for dedicated servers.
+This is my first docker project. If you need more information, find a bug or mistakes in the documentation it is very appreciated if you contact me. If you need support it would be the best if you create a new thread in the steam discussion for dedicated servers and first check that it is not an general server issue (related to steamcmd or the game). If you think it is a container related issue (based on my image) feel free to contact me.
 
 
 ## Timeline
 24.July 2020 - I started on working on a baseline image for steamcmd. The testing branche (:test) is already using it. So new images can build up on this image and will reduce the build time. On the other hand verybody can now use my daily updated steamcmd image for any kind of dedicated servers. On the test branch I'm now working on optimizing the image to get less layers to improve the container space and layer usage. https://hub.docker.com/r/snickch/steamcmd
+
+20.July 2020 - The images are now created on a daily base to make sure that on new updates the image is ready (so I don't have to check it manually any more).
 
 18.May 2020 - Mods are now supported, as long as they work on Linux. To support this, I had to add an empty folder "Mods".Make sure your mods work with Linux before you use them with this container.
 
