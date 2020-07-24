@@ -74,6 +74,7 @@ This is my first docker project. If you need more information, find a bug or mis
 
 
 ## Timeline
+24.7.2020 - I started on working on a baseline image for steamcmd. The testing branche (:test) is already using it. So new images can build up on this image and will reduce the build time. On the other hand verybody can now use my daily updated steamcmd image for any kind of dedicated servers. On the test branch I'm now working on optimizing the image to get less layers to improve the container space and layer usage.
 
 18.May 2020 - Mods are now supported, as long as they work on Linux. To support this, I had to add an empty folder "Mods".Make sure your mods work with Linux before you use them with this container.
 
@@ -89,11 +90,9 @@ This is my first docker project. If you need more information, find a bug or mis
 
 
 ## Future considerations
-1) Write a full How-To starter guide for administrators with no docker knowhow to start with the container. Status: in work (Prio1)
+1) Howto starter guide with a lot of details is available (done)
 
 2) Add a second way to start the server in the container: Start the container with environment variables for testing purpose where not the full travel path is needed. Like “-hostname, -Port, -QueryPort”. Status: planned
-
-3) Add a build badge so you have the status of the weekly build. This is at the moment not possible because my GitLab CI/CD project is private (where I do the auto builds) so I can’t share the badge here without setting the project to public. Here I’m looking for a workaround. Status: on hold, this has no priority and has the dependency to Gitlab.
 
 4) Container scanning: during the build process the container will be scanned for known vulnerabilities. Status: planned
 
