@@ -74,7 +74,7 @@ This is my first docker project. If you need more information, find a bug or mis
 
 
 ## Timeline
-24.7.2020 - I started on working on a baseline image for steamcmd. The testing branche (:test) is already using it. So new images can build up on this image and will reduce the build time. On the other hand verybody can now use my daily updated steamcmd image for any kind of dedicated servers. On the test branch I'm now working on optimizing the image to get less layers to improve the container space and layer usage.
+24.7.2020 - I started on working on a baseline image for steamcmd. The testing branche (:test) is already using it. So new images can build up on this image and will reduce the build time. On the other hand verybody can now use my daily updated steamcmd image for any kind of dedicated servers. On the test branch I'm now working on optimizing the image to get less layers to improve the container space and layer usage. https://hub.docker.com/r/snickch/steamcmd
 
 18.May 2020 - Mods are now supported, as long as they work on Linux. To support this, I had to add an empty folder "Mods".Make sure your mods work with Linux before you use them with this container.
 
@@ -94,7 +94,10 @@ This is my first docker project. If you need more information, find a bug or mis
 
 2) Add a second way to start the server in the container: Start the container with environment variables for testing purpose where not the full travel path is needed. Like “-hostname, -Port, -QueryPort”. Status: planned
 
+3) Create an own steamcmd base image. Done (in testing on :test) https://hub.docker.com/r/snickch/steamcmd. I will add soon it's own github project for this base image.
+
 4) Container scanning: during the build process the container will be scanned for known vulnerabilities. Status: planned
 
 5) Mod support: done. Works as long the mods are supported for Linux
 6) Document how to run the command on docker for Windows: in work
+
