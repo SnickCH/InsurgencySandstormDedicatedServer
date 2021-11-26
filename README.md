@@ -34,7 +34,7 @@ docker run -d --name sandstorm \ #run as daemon, name the container "sandstorm"
 	-p 27102:27102/tcp -p 27102:27102/udp \ #Port 27102 for ServerPort
 	-p 27131:27131 -p 27131:27131/udp \ #Port 27131 for QueryPort
 	--volume /home/debian/insurgency/Game.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Game.ini:ro \ #path to Game.ini
-	--volume /home/debian/insurgency-test/Engine.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Engine.ini:ro \
+	--volume /home/debian/insurgency/Engine.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Engine.ini:ro \
 	--volume /home/debian/insurgency/Admins.txt:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/Server/Admins.txt:ro \ #path to Admins.txt
 	--volume /home/debian/insurgency/MapCycle.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/MapCycle.txt:ro \ #path to MapCycle.txt
 	--volume /home/debian/insurgency/Mods.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/Mods.txt:ro \ #path to Mods.txt
