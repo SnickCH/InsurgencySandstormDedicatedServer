@@ -67,6 +67,7 @@ services:
 
 ```
 The Watchtower documentation from containrrr: https://containrrr.dev/watchtower/arguments/
+
 Cron Job scheduler information for your time: https://pkg.go.dev/github.com/robfig/cron@v1.2.0#hdr-CRON_Expression_Format
 	
 
