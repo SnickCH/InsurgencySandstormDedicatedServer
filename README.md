@@ -19,7 +19,7 @@ Or you can run the full command (documented below). On the first run the contain
 
 # How to launch
 
-Simple command syntax
+Simple command syntax. You can use all the syntax you are allready using on your server. Just add them on the <travel parameters>. 
 ```
 docker run <docker parameters> image ./InsurgencyServer-Linux-Shipping <travel-parameters>
 ```
@@ -45,27 +45,28 @@ docker run -d --name sandstorm \ #run as daemon, name the container "sandstorm"
 ```
 If you don't use Mods you can just delete the two line with the ``` Mods.txt ``` and ```Mods``` folder. The same for ``` Engine.ini ``` or ``` Admin.txt ``` if you are not using it. On my host where docker is running, my path with the config is ``` /home/debian/insurgency/... ``` . You have to replace this with the path you are using.
 
-Full syntax example for Windows (docker) 
 
-``` in work, I will add this section soon. If anybody already adopted it for Windows, feel free to share it here```
 
 # Update(s)
-Autobuilds will run on a weekly base for “latest”. If ther is a server update from Insurgency Sandstorm I will trigger the build earlier (if possible).
+Autobuilds will run on (minimum) weekly base for “latest” and if possible daily. If ther is a server update from Insurgency Sandstorm I will trigger the build earlier (if possible).
 
-The idea is to use this the “container way” to just replace the container instead of updating anything inside the container. Your data will be static and will be loaded in the new container (if configured correctly with the ``` docker run``` command). This makes it even faster for you. You can pull the newest image and during the download your “old” container is still running. Then you can just recreate the container and that’s it. Some code snippets for your scripts to automate this
+The idea is to use this the “container way” to just replace the container instead of updating anything inside the container. Your data will be static and will be loaded in the new container (if configured correctly with the ``` docker run``` command). This makes it even faster for you. You can pull the newest image and during the download your “old” container is still running. Then you can just recreate the container and that’s it. It works perfectly with watchtower. I use the watchtower image from containrrr/watchtower. 
+	
+Example of my docker-compose.yml for watchtower. Make sure you use the correct "schedule" parameters. In this example it will always at 8am check for new images, download them (if available) and then restart the container. Be aware that the container will be forcibly shutdown - if players are on the server they might not find it very amazing ;)
 
 ```
-docker pull snickch/insurgencysandstormdedicatedserver #download the newest image
-docker stop sandstorm #Stop the container named "sandstorm"
-docker rm sandstorm #delete the container named "sandstorm"
-docker run <SYNTAX> #use the syntax above to run the new container
-#repeat the docker stop, docker rm, docker run part for all your containers / servers you are running on the host before you run the prune command. 
-#The prune command will only delete images that are not used, so it makes no sense if you still have container on the old image.
-docker images prune -a #deletes all unused container images
+version: "3" 
+services:
+   watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --schedule "0 0 8 * *" --cleanup --rolling-restart --include-stopped --revive-stopped
 
-* sandstorm = container name from the syntax example (--name=sandstorm)
 ```
-
+The Watchtower documentation from containrrr: https://containrrr.dev/watchtower/arguments/
+Cron Job scheduler information for your time: https://pkg.go.dev/github.com/robfig/cron@v1.2.0#hdr-CRON_Expression_Format
+	
 
 
 # Project status
@@ -74,7 +75,9 @@ This is my first docker project. If you need more information, find a bug or mis
 
 
 ## Timeline
-23.March 2021 - Thanks to jcoker85 I corrected the path in the readme to the .ini files. Now they should be correct and can be copied 1:1 from the example.
+26.November 2021 - I added a howto for Watchtower, so the container is automatically updated. No need for any scripts and cron jobs. 
+
+	23.March 2021 - Thanks to jcoker85 I corrected the path in the readme to the .ini files. Now they should be correct and can be copied 1:1 from the example.
 
 24.July 2020 - I started on working on a baseline image for steamcmd. The testing branche (:test) is already using it. So new images can build up on this image and will reduce the build time. On the other hand verybody can now use my daily updated steamcmd image for any kind of dedicated servers. On the test branch I'm now working on optimizing the image to get less layers to improve the container space and layer usage. https://hub.docker.com/r/snickch/steamcmd
 
@@ -94,14 +97,6 @@ This is my first docker project. If you need more information, find a bug or mis
 
 
 ## Future considerations
-1) Howto starter guide with a lot of details is available (done)
-
-2) Add a second way to start the server in the container: Start the container with environment variables for testing purpose where not the full travel path is needed. Like “-hostname, -Port, -QueryPort”. Status: planned
-
-3) Create an own steamcmd base image. Done (in testing on :test) https://hub.docker.com/r/snickch/steamcmd. I will add soon it's own github project for this base image.
-
-4) Container scanning: during the build process the container will be scanned for known vulnerabilities. Status: planned
-
-5) Mod support: done. Works as long the mods are supported for Linux
-6) Document how to run the command on docker for Windows: in work
+The image works as planned. There is a lot of documentation. In my opinion there is nothing to consider at the moment. 
+The only thing that could follow in the future is a docker-compose example, as soon as I have to change my VM where the server runs. If you have a working docker-compose example, feel free to open an issue so I can add it to the decription.
 
