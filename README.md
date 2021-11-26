@@ -97,6 +97,8 @@ This is my first docker project. If you need more information, find a bug or mis
 
 05.May 2020 – first build
 
+## Known issues
+At the moment there are no known issues
 
 ## Future considerations
 The image works as planned. There is a lot of documentation. In my opinion there is nothing to consider at the moment. 
