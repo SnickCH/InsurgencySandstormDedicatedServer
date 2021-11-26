@@ -21,7 +21,7 @@ Or you can run the full command (documented below). On the first run the contain
 
 # How to launch
 
-Simple command syntax. You can use all the syntax you are allready using on your server. Just add them on the <travel parameters>. 
+Simple command syntax. You can use all the syntax you are allready using on your server. Just add them on the travel parameters. 
 ```
 docker run <docker parameters> image ./InsurgencyServer-Linux-Shipping <travel-parameters>
 ```
