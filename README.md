@@ -61,10 +61,12 @@ version: "3"
 services:
    watchtower:
     image: containrrr/watchtower
+    restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: --schedule "0 0 8 * *" --cleanup --rolling-restart --include-stopped --revive-stopped
-
+    command: --schedule "0 32 9 * *" --cleanup --rolling-restart --include-stopped --revive-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
 ```
 The Watchtower documentation from containrrr: https://containrrr.dev/watchtower/arguments/
 
@@ -78,6 +80,7 @@ This is my first docker project. If you need more information, find a bug or mis
 
 
 ## Timeline
+19.December 2021 - Updated the docker-compose.yml for watchtower
 26.November 2021 - I added a howto for Watchtower, so the container is automatically updated. No need for any scripts and cron jobs. 
 
 23.March 2021 - Thanks to jcoker85 I corrected the path in the readme to the .ini files. Now they should be correct and can be copied 1:1 from the example.
