@@ -82,7 +82,7 @@ docker run -d --restart=always --name $CNAME -p $GAMEPORT:$GAMEPORT/tcp -p $GAME
 $IMAGE ./InsurgencyServer-Linux-Shipping -Port=$GAMEPORT -QueryPort=$QUERRYPORT -MaxPlayers=$MAXPlayers \
 -Mods \
 -Rcon -RconPassword="$RconPassword" -RconListenPort=$RCONPORT \
--Hostname="$HNAME"
+-Hostname="$HNAME" \
 -Mutators=$MUTATORS \
 -ModDownloadTravelTo=$MODTRAVEL \
 -GSLTToken=$GSLTTOKEN  -GameStatsToken=$GAMESTATSTOKEN
