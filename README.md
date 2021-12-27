@@ -28,7 +28,7 @@ docker run <docker parameters> image ./InsurgencyServer-Linux-Shipping <travel-p
 I suggest, you create a "start.sh" script and make it executable (chmod +x). So you can just run the script with ./restart.sh in your linux console
 
 
-Full syntax example for Linux (docker) - ATTENTION - work in progress 27.12.2021), we are working on it so please wait 1-2 hour until it's published
+Full syntax example for Linux (docker), if you create a ./restart.sh script. You can copy this 1:1 and only have to adjust the variables
 ```
 #Set the container Name (not the GameServer Name)
 CNAME=sandstorm
@@ -99,6 +99,8 @@ The idea is to use this the “container way” to just replace the container in
 	
 Example of my docker-compose.yml for watchtower. Make sure you use the correct "schedule" parameters. In this example it will always at 8am check for new images, download them (if available) and then restart the container. Be aware that the container will be forcibly shutdown - if players are on the server they might not find it very amazing ;)
 
+This is the docker-compose.yml file. I will soon ad the simple docker-run command
+
 ```
 version: "3" 
 services:
@@ -142,6 +144,14 @@ How it looked when it was wrong, because I created the Admins.txt with root
 -rw-r--r-- 1 debian debian 5.5K Dec 14 17:22 MapCycle.txt
 -rw-r--r-- 1 debian debian   82 Dec 14 17:22 Mods.txt
 ```
+
+If you define the Servername in Game.ini, you should remove the following command from the script
+```
+....
+-Hostname="$HNAME" \
+....
+```
+
 
 # Project status
 
