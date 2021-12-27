@@ -38,10 +38,10 @@ docker stop $CNAME
 docker rm $CNAME
 
 #Path to folder where the configs are stored
-CONFDIR=/home/debian/insurgency-test/server2
+CONFDIR=/insurgency/config
 
 #Path to folder where the mods should be stored
-MODS=/home/debian/insurgency-test/data/Mods2
+MODS=/insurgency/Mods
 
 #The image that should be used. Don't change it ;)
 IMAGE=snickch/insurgencysandstormdedicatedserver:latest
