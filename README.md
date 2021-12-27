@@ -53,7 +53,7 @@ $IMAGE ./InsurgencyServer-Linux-Shipping -Port=$GAMEPORT -QueryPort=$QUERRYPORT 
 -Rcon -RconPassword=XXXX -RconListenPort=$RCONPORT \
 -Mutators=XXXXXX \
 -ModDownloadTravelTo=Precinct?Scenario=Scenario_Precinct_Checkpoint_Security \
--GSLTToken=XXX  -GameStats
+-GSLTToken=XXX  -GameStats=XXXX
 ```
 If you don't use Mods you can just delete the two line with the ``` Mods.txt ``` and ```Mods``` folder. The same for ``` Engine.ini ``` or ``` Admin.txt ``` if you are not using it. On my host where docker is running, my path with the config is ``` /home/debian/insurgency/... ``` . You have to replace this with the path you are using.
 
