@@ -25,6 +25,8 @@ Simple command syntax. You can use all the syntax you are allready using on your
 ```
 docker run <docker parameters> image ./InsurgencyServer-Linux-Shipping <travel-parameters>
 ```
+I suggest, you create a "start.sh" script and make it executable (chmod +x). So you can just run the script with ./restart.sh in your linux console
+
 
 Full syntax example for Linux (docker)
 ```
@@ -87,6 +89,7 @@ This is my first docker project. If you need more information, find a bug or mis
 
 
 ## Timeline
+28.December 2021 - mad the script a bit easier (I will continue to make it easier)
 19.December 2021 - Updated the docker-compose.yml for watchtower
 26.November 2021 - I added a howto for Watchtower, so the container is automatically updated. No need for any scripts and cron jobs. 
 
