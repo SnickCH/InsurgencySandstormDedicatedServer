@@ -86,6 +86,13 @@ The Watchtower documentation from containrrr: https://containrrr.dev/watchtower/
 Cron Job scheduler information for your time: https://pkg.go.dev/github.com/robfig/cron@v1.2.0#hdr-CRON_Expression_Format
 	
 
+# Troubleshooting
+If your server doesn't start with Mods or without settings, make sure that all the files (Game.ini etc.) and the "Mods" Folder have the correct user permission. You can change the permissions with the chwon command. Make sure you replace USER and GROUP with your information.
+
+```
+chown USER:GROUP Game.ini Mods Engine.ini Admins.txt Mods.txt MapCycle.txt
+
+```
 
 # Project status
 
