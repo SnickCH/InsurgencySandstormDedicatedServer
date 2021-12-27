@@ -28,11 +28,14 @@ docker run <docker parameters> image ./InsurgencyServer-Linux-Shipping <travel-p
 I suggest, you create a "start.sh" script and make it executable (chmod +x). So you can just run the script with ./restart.sh in your linux console
 
 
-Full syntax example for Linux (docker)
+Full syntax example for Linux (docker) - ATTENTION - work in progress 27.12.2021), we are working on it so please wait 1-2 hour until it's published
 ```
+#Set the container Name (not the GameServer Name)
+CNAME=sandstorm
+
 #Optional: if a container with the name sandstorm exist, it will be stopped and deleted
-docker stop sandstorm
-docker rm sandstorm
+docker stop $CNAME
+docker rm $CNAME
 
 #Path to folder where the configs are stored
 CONFDIR=/home/debian/insurgency-test/server2
@@ -43,14 +46,12 @@ MODS=/home/debian/insurgency-test/data/Mods2
 #The image that should be used. Don't change it ;)
 IMAGE=snickch/insurgencysandstormdedicatedserver:latest
 
-#Set the container Name (not the GameServer Name)
-CNAME=sandstorm
 
 #Set the Gameserver Name
 HNAME="Your Game Server Name"
 
 #Set your mutators for the server
-MUTATORS="XXXX, YYYY, zzZZ"
+MUTATORS="XXXX,YYYY,ZZZZ"
 
 #Set your tokens
 GSLTTOKEN="XXXXXXXX"
@@ -81,7 +82,7 @@ docker run -d --restart=always --name $CNAME -p $GAMEPORT:$GAMEPORT/tcp -p $GAME
 $IMAGE ./InsurgencyServer-Linux-Shipping -Port=$GAMEPORT -QueryPort=$QUERRYPORT -MaxPlayers=$MAXPlayers \
 -Mods \
 -Rcon -RconPassword=$RconPassword -RconListenPort=$RCONPORT \
--Hostname=$HNAME
+-Hostname="$HNAME"
 -Mutators=$MUTATORS \
 -ModDownloadTravelTo=$MODTRAVEL \
 -GSLTToken=$GSLTTOKEN  -GameStatsToken=$GAMESTATSTOKEN
