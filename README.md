@@ -68,7 +68,7 @@ RCONPORT=22720
 
 #Here you can adjust the game ports
 GAMEPORT=27102
-QUERRYPORT=22710
+QUERRYPORT=27131
 
 
 #Here starts the script, you shouldn't change anything here, you can all do with the variables above
