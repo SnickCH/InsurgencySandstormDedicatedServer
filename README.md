@@ -28,22 +28,29 @@ docker run <docker parameters> image ./InsurgencyServer-Linux-Shipping <travel-p
 
 Full syntax example for Linux (docker)
 ```
-
-docker run -d --name sandstorm \ #run as daemon, name the container "sandstorm"
-	-p 29099:29099/tcp -p 29099:2099/udp \ #Port 2099 for RCON-Port
-	-p 27102:27102/tcp -p 27102:27102/udp \ #Port 27102 for ServerPort
-	-p 27131:27131 -p 27131:27131/udp \ #Port 27131 for QueryPort
-	--volume /home/debian/insurgency/Game.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Game.ini:ro \ #path to Game.ini
-	--volume /home/debian/insurgency/Engine.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Engine.ini:ro \
-	--volume /home/debian/insurgency/Admins.txt:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/Server/Admins.txt:ro \ #path to Admins.txt
-	--volume /home/debian/insurgency/MapCycle.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/MapCycle.txt:ro \ #path to MapCycle.txt
-	--volume /home/debian/insurgency/Mods.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/Mods.txt:ro \ #path to Mods.txt
-	--volume /home/debian/insurgency/Mods/:/home/steam/steamcmd/sandstorm/Insurgency/Mods \ #path where you want to have the downloaded mods on your host system. On container restart / re-creation the mods stay static (not again downloaded)
-	snickch/insurgencysandstormdedicatedserver \ #image name
-	./InsurgencyServer-Linux-Shipping \ #start the server
-	-Port=27102 \ #travelpath Serverport
-	-QueryPort=27131 \ #travelpath QueryPort
-	#here you can add any travelpath you need, like -Mapcycle -GSLTToken=xxxx etc.
+#Path to folder where the configs are stored
+PATH=/home/debian/insurgency-test/server2
+#Paht to folder where the mods should be stored
+MODS=/home/debian/insurgency-test/data/Mods2
+#The image that should be used. Don't change it ;)
+IMAGE=snickch/insurgencysandstormdedicatedserver:latest
+#Here you can adjust the ports
+GAMEPORT=27104
+QUERRYPORT=22711
+RCONPORT=22721
+#Here starts the script
+docker run -d --restart=always --name sandstorm2 -p $GAMEPORT:$GAMEPORT/tcp -p $GAMEPORT:$GAMEPORT/udp -p $QUERRYPORT:$QUERRYPORT/tcp -p $QUERRYPORT:$QUERRYPORT/udp -p $RCONPORT:$RCONPORT -p $RCONPORT:$RCONPORT/udp \
+--volume $PATH/Game.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Game.ini:ro \
+--volume $PATH/Engine.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Engine.ini:ro \
+--volume $PATH/Admins.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/Admins.txt:ro \
+--volume $PATH/Mods.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/Mods.txt:ro \
+--volume $PATH/MapCycle.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/MapCycle.txt:ro \
+--volume $MODS/:/home/steam/steamcmd/sandstorm/Insurgency/Mods \
+$IMAGE ./InsurgencyServer-Linux-Shipping -Port=$GAMEPORT -QueryPort=$QUERRYPORT -MaxPlayers=20 \
+-Mods \
+-Rcon -RconPassword=XXXX -RconListenPort=$RCONPORT \
+-Mutators=XXXXXX \
+-ModDownloadTravelTo=Precinct?Scenario=Scenario_Precinct_Checkpoint_Security \
 ```
 If you don't use Mods you can just delete the two line with the ``` Mods.txt ``` and ```Mods``` folder. The same for ``` Engine.ini ``` or ``` Admin.txt ``` if you are not using it. On my host where docker is running, my path with the config is ``` /home/debian/insurgency/... ``` . You have to replace this with the path you are using.
 
