@@ -37,9 +37,9 @@ MODS=/home/debian/insurgency-test/data/Mods2
 #The image that should be used. Don't change it ;)
 IMAGE=snickch/insurgencysandstormdedicatedserver:latest
 #Here you can adjust the ports
-GAMEPORT=27104
-QUERRYPORT=22711
-RCONPORT=22721
+GAMEPORT=27102
+QUERRYPORT=22710
+RCONPORT=22720
 #Here starts the script
 docker run -d --restart=always --name sandstorm2 -p $GAMEPORT:$GAMEPORT/tcp -p $GAMEPORT:$GAMEPORT/udp -p $QUERRYPORT:$QUERRYPORT/tcp -p $QUERRYPORT:$QUERRYPORT/udp -p $RCONPORT:$RCONPORT -p $RCONPORT:$RCONPORT/udp \
 --volume $PATH/Game.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Game.ini:ro \
