@@ -30,6 +30,9 @@ I suggest, you create a "start.sh" script and make it executable (chmod +x). So 
 
 Full syntax example for Linux (docker)
 ```
+#Optional: if a container with the name sandstorm exist, it will be stopped and deleted
+docker stop sandstorm
+docker rm sandstorm
 #Path to folder where the configs are stored
 CONFDIR=/home/debian/insurgency-test/server2
 #Paht to folder where the mods should be stored
@@ -41,7 +44,7 @@ GAMEPORT=27102
 QUERRYPORT=22710
 RCONPORT=22720
 #Here starts the script
-docker run -d --restart=always --name sandstorm2 -p $GAMEPORT:$GAMEPORT/tcp -p $GAMEPORT:$GAMEPORT/udp -p $QUERRYPORT:$QUERRYPORT/tcp -p $QUERRYPORT:$QUERRYPORT/udp -p $RCONPORT:$RCONPORT -p $RCONPORT:$RCONPORT/udp \
+docker run -d --restart=always --name sandstorm -p $GAMEPORT:$GAMEPORT/tcp -p $GAMEPORT:$GAMEPORT/udp -p $QUERRYPORT:$QUERRYPORT/tcp -p $QUERRYPORT:$QUERRYPORT/udp -p $RCONPORT:$RCONPORT -p $RCONPORT:$RCONPORT/udp \
 --volume $CONFDIR/Game.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Game.ini:ro \
 --volume $CONFDIR/Engine.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Engine.ini:ro \
 --volume $CONFDIR/Admins.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/Admins.txt:ro \
