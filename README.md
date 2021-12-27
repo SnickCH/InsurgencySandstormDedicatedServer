@@ -81,7 +81,7 @@ docker run -d --restart=always --name $CNAME -p $GAMEPORT:$GAMEPORT/tcp -p $GAME
 --volume $MODS/:/home/steam/steamcmd/sandstorm/Insurgency/Mods \
 $IMAGE ./InsurgencyServer-Linux-Shipping -Port=$GAMEPORT -QueryPort=$QUERRYPORT -MaxPlayers=$MAXPlayers \
 -Mods \
--Rcon -RconPassword=$RconPassword -RconListenPort=$RCONPORT \
+-Rcon -RconPassword="$RconPassword" -RconListenPort=$RCONPORT \
 -Hostname="$HNAME"
 -Mutators=$MUTATORS \
 -ModDownloadTravelTo=$MODTRAVEL \
