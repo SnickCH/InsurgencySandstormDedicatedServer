@@ -33,31 +33,60 @@ Full syntax example for Linux (docker)
 #Optional: if a container with the name sandstorm exist, it will be stopped and deleted
 docker stop sandstorm
 docker rm sandstorm
+
 #Path to folder where the configs are stored
 CONFDIR=/home/debian/insurgency-test/server2
-#Paht to folder where the mods should be stored
+
+#Path to folder where the mods should be stored
 MODS=/home/debian/insurgency-test/data/Mods2
+
 #The image that should be used. Don't change it ;)
 IMAGE=snickch/insurgencysandstormdedicatedserver:latest
-#Here you can adjust the ports
+
+#Set the container Name (not the GameServer Name)
+CNAME=sandstorm
+
+#Set the Gameserver Name
+HNAME="Your Game Server Name"
+
+#Set your mutators for the server
+MUTATORS="XXXX, YYYY, zzZZ"
+
+#Set your tokens
+GSLTTOKEN="XXXXXXXX"
+GAMESTATSTOKEN="XXXXXX"
+#Set with map should be used on start (ModDownloadTravelTo makes sure your mods are started with the first map)
+MODTRAVEL="Precinct?Scenario=Scenario_Precinct_Checkpoint_Security"
+
+#Set maximal players
+MAXPlayers=20
+
+#RCON Config
+RconPassword="YOURPASSWORD"
+RCONPORT=22720
+
+#Here you can adjust the game ports
 GAMEPORT=27102
 QUERRYPORT=22710
-RCONPORT=22720
-#Here starts the script
-docker run -d --restart=always --name sandstorm -p $GAMEPORT:$GAMEPORT/tcp -p $GAMEPORT:$GAMEPORT/udp -p $QUERRYPORT:$QUERRYPORT/tcp -p $QUERRYPORT:$QUERRYPORT/udp -p $RCONPORT:$RCONPORT -p $RCONPORT:$RCONPORT/udp \
+
+
+#Here starts the script, you shouldn't change anything here, you can all do with the variables above
+docker run -d --restart=always --name $CNAME -p $GAMEPORT:$GAMEPORT/tcp -p $GAMEPORT:$GAMEPORT/udp -p $QUERRYPORT:$QUERRYPORT/tcp -p $QUERRYPORT:$QUERRYPORT/udp -p $RCONPORT:$RCONPORT -p $RCONPORT:$RCONPORT/udp \
 --volume $CONFDIR/Game.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Game.ini:ro \
 --volume $CONFDIR/Engine.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Engine.ini:ro \
 --volume $CONFDIR/Admins.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/Admins.txt:ro \
 --volume $CONFDIR/Mods.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/Mods.txt:ro \
 --volume $CONFDIR/MapCycle.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/MapCycle.txt:ro \
 --volume $MODS/:/home/steam/steamcmd/sandstorm/Insurgency/Mods \
-$IMAGE ./InsurgencyServer-Linux-Shipping -Port=$GAMEPORT -QueryPort=$QUERRYPORT -MaxPlayers=20 \
+$IMAGE ./InsurgencyServer-Linux-Shipping -Port=$GAMEPORT -QueryPort=$QUERRYPORT -MaxPlayers=$MAXPlayers \
 -Mods \
--Rcon -RconPassword=XXXX -RconListenPort=$RCONPORT \
--Mutators=XXXXXX \
--ModDownloadTravelTo=Precinct?Scenario=Scenario_Precinct_Checkpoint_Security \
--GSLTToken=XXX  -GameStatsToken=XXXX
+-Rcon -RconPassword=$RconPassword -RconListenPort=$RCONPORT \
+-Hostname=$HNAME
+-Mutators=$MUTATORS \
+-ModDownloadTravelTo=$MODTRAVEL \
+-GSLTToken=$GSLTTOKEN  -GameStatsToken=$GAMESTATSTOKEN
 ```
+
 If you don't use Mods you can just delete the two line with the ``` Mods.txt ``` and ```Mods``` folder. The same for ``` Engine.ini ``` or ``` Admin.txt ``` if you are not using it. On my host where docker is running, my path with the config is ``` /home/debian/insurgency/... ``` . You have to replace this with the path you are using.
 
 
@@ -92,6 +121,25 @@ If your server doesn't start with Mods or without settings, make sure that all t
 ```
 chown USER:GROUP Game.ini Mods Engine.ini Admins.txt Mods.txt MapCycle.txt
 
+```
+
+Example how it should look, if your user is debian with the group debian
+
+```
+-rw-r--r-- 1 debian debian   87 Dec 13 17:10 Admins.txt
+-rw-r--r-- 1 debian debian 1.8K Dec 14 15:20 Engine.ini
+-rw-r--r-- 1 debian debian  22K Dec 21 19:12 Game.ini
+-rw-r--r-- 1 debian debian 5.5K Dec 14 17:22 MapCycle.txt
+-rw-r--r-- 1 debian debian   82 Dec 14 17:22 Mods.txt
+```
+
+How it looked when it was wrong, because I created the Admins.txt with root
+```
+-rw-r--r-- 1 root   root     87 Dec 13 17:10 Admins.txt
+-rw-r--r-- 1 debian debian 1.8K Dec 14 15:20 Engine.ini
+-rw-r--r-- 1 debian debian  22K Dec 21 19:12 Game.ini
+-rw-r--r-- 1 debian debian 5.5K Dec 14 17:22 MapCycle.txt
+-rw-r--r-- 1 debian debian   82 Dec 14 17:22 Mods.txt
 ```
 
 # Project status
