@@ -31,7 +31,7 @@ I suggest, you create a "start.sh" script and make it executable (chmod +x). So 
 Full syntax example for Linux (docker)
 ```
 #Path to folder where the configs are stored
-PATH2=/home/debian/insurgency-test/server2
+CONFDIR=/home/debian/insurgency-test/server2
 #Paht to folder where the mods should be stored
 MODS=/home/debian/insurgency-test/data/Mods2
 #The image that should be used. Don't change it ;)
@@ -42,11 +42,11 @@ QUERRYPORT=22710
 RCONPORT=22720
 #Here starts the script
 docker run -d --restart=always --name sandstorm2 -p $GAMEPORT:$GAMEPORT/tcp -p $GAMEPORT:$GAMEPORT/udp -p $QUERRYPORT:$QUERRYPORT/tcp -p $QUERRYPORT:$QUERRYPORT/udp -p $RCONPORT:$RCONPORT -p $RCONPORT:$RCONPORT/udp \
---volume $PATH2/Game.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Game.ini:ro \
---volume $PATH2/Engine.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Engine.ini:ro \
---volume $PATH2/Admins.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/Admins.txt:ro \
---volume $PATH2/Mods.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/Mods.txt:ro \
---volume $PATH2/MapCycle.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/MapCycle.txt:ro \
+--volume $CONFDIR/Game.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Game.ini:ro \
+--volume $CONFDIR/Engine.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Engine.ini:ro \
+--volume $CONFDIR/Admins.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/Admins.txt:ro \
+--volume $CONFDIR/Mods.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/Mods.txt:ro \
+--volume $CONFDIR/MapCycle.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/MapCycle.txt:ro \
 --volume $MODS/:/home/steam/steamcmd/sandstorm/Insurgency/Mods \
 $IMAGE ./InsurgencyServer-Linux-Shipping -Port=$GAMEPORT -QueryPort=$QUERRYPORT -MaxPlayers=20 \
 -Mods \
