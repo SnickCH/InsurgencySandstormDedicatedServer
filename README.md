@@ -30,48 +30,57 @@ I suggest, you create a "start.sh" script and make it executable (chmod +x). So 
 
 Full syntax example for Linux (docker), if you create a ./restart.sh script. You can copy this 1:1 and only have to adjust the variables
 ```
-#Set the container Name (not the GameServer Name)
-CNAME=sandstorm
+#Set the container Name, every Container need an unique name (not the GameServer Name)
+CNAME=is_myfirstserver
 
 #Optional: if a container with the name sandstorm exist, it will be stopped and deleted
+echo docker container will be stopped
 docker stop $CNAME
+echo docker container will be removed
 docker rm $CNAME
 
 #Path to folder where the configs are stored
-CONFDIR=/insurgency/config
+CONFDIR=/home/gameadmin/insurgency
 
 #Path to folder where the mods should be stored
-MODS=/insurgency/Mods
+MODS=/home/gameadmin/insurgency/Mods
 
 #The image that should be used. Don't change it ;)
 IMAGE=snickch/insurgencysandstormdedicatedserver:latest
 
-
 #Set the Gameserver Name
-HNAME="Your Game Server Name"
+HNAME="[SN!CK[CH]] my First InsurgencySandstrom Gameserver"
 
-#Set your mutators for the server
-MUTATORS="XXXX,YYYY,ZZZZ"
-
-#Set your tokens
+#Set your tokens you get from the next two Pages
+#https://gamestats.sandstorm.game/
+#https://steamcommunity.com/dev/managegameservers App-ID:581320
 GSLTTOKEN="XXXXXXXX"
-GAMESTATSTOKEN="XXXXXX"
-#Set with map should be used on start (ModDownloadTravelTo makes sure your mods are started with the first map)
-MODTRAVEL="Precinct?Scenario=Scenario_Precinct_Checkpoint_Security"
+GAMESTATSTOKEN="XXXXXXXX"
+
+#Set your mutators for the server you will get it from https://mod.io
+#You need an API-Key from https://mod.io/apikey/ which goes to the Engine.ini 
+MUTATORS="XXX,YYY,ZZZ"
+
+#Set the map which should be used on start (ModDownloadTravelTo makes sure your mods are started with the first map and the MaxPlayer you want)
+MAP="Precinct?Scenario=Scenario_Precinct_Checkpoint_Security?lighting=day"
 
 #Set maximal players
 MAXPlayers=20
 
-#RCON Config
-RconPassword="YOURPASSWORD"
-RCONPORT=22720
+#Do not change the next 2 Variables
+TMP="?MaxPlayers="
+MODTRAVEL=$MAP$TMP$MAXPlayers
 
-#Here you can adjust the game ports
+#RCON Config
+RconPassword="xxxxxxxx"
+RCONPORT=22722
+
+#Here you can adjust the game ports (Multiple Server need unique Ports)
 GAMEPORT=27102
 QUERRYPORT=27131
 
-
 #Here starts the script, you shouldn't change anything here, you can all do with the variables above
+echo start docker container
 docker run -d --restart=always --name $CNAME -p $GAMEPORT:$GAMEPORT/tcp -p $GAMEPORT:$GAMEPORT/udp -p $QUERRYPORT:$QUERRYPORT/tcp -p $QUERRYPORT:$QUERRYPORT/udp -p $RCONPORT:$RCONPORT -p $RCONPORT:$RCONPORT/udp \
 --volume $CONFDIR/Game.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Game.ini:ro \
 --volume $CONFDIR/Engine.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Engine.ini:ro \
@@ -79,7 +88,7 @@ docker run -d --restart=always --name $CNAME -p $GAMEPORT:$GAMEPORT/tcp -p $GAME
 --volume $CONFDIR/Mods.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/Mods.txt:ro \
 --volume $CONFDIR/MapCycle.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/MapCycle.txt:ro \
 --volume $MODS/:/home/steam/steamcmd/sandstorm/Insurgency/Mods \
-$IMAGE ./InsurgencyServer-Linux-Shipping -Port=$GAMEPORT -QueryPort=$QUERRYPORT -MaxPlayers=$MAXPlayers \
+$IMAGE ./InsurgencyServer-Linux-Shipping -Port=$GAMEPORT -QueryPort=$QUERRYPORT \
 -Mods \
 -Rcon -RconPassword="$RconPassword" -RconListenPort=$RCONPORT \
 -Hostname="$HNAME" \
@@ -88,7 +97,7 @@ $IMAGE ./InsurgencyServer-Linux-Shipping -Port=$GAMEPORT -QueryPort=$QUERRYPORT 
 -GSLTToken=$GSLTTOKEN  -GameStatsToken=$GAMESTATSTOKEN
 ```
 
-If you don't use Mods you can just delete the two line with the ``` Mods.txt ``` and ```Mods``` folder. The same for ``` Engine.ini ``` or ``` Admin.txt ``` if you are not using it. On my host where docker is running, my path with the config is ``` /home/debian/insurgency/... ``` . You have to replace this with the path you are using.
+If you don't use Mods you can just delete the two line with the ``` Mods.txt ``` and ```Mods``` folder. The same for ``` Engine.ini ``` or ``` Admin.txt ``` if you are not using it. On my host where docker is running, my path with the config is ``` /home/gameadmin/insurgency/... ``` . You have to replace this with the path you are using.
 
 
 
