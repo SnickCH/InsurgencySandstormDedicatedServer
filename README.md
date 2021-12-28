@@ -219,7 +219,14 @@ If you define the Servername in Game.ini, you should remove the following comman
 -Hostname="$HNAME" \
 ....
 ```
-
+If you define the Maxplayers in the Game.ini, you have to change the following variable
+```
+MODTRAVEL=$MAP$TMP$MAXPlayers
+```
+to 
+```
+MODTRAVEL=$MAP
+```
 
 # Project status
 
