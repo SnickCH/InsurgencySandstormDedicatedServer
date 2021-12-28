@@ -154,13 +154,11 @@ docker logs --tail=20 sandstorm
 
 Stop a container named "sandstorm"
 ```
-docker stop containername
 docker stop sandstorm
 ```
 
 Delete a stopped container named "sandstorm"
 ```
-docker rm containername
 docker rm sandstorm
 ```
 
