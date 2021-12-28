@@ -11,6 +11,7 @@ Here you can check the last update on the container (yes, the project is still m
 
 # Documentation
 In the future all documentation will be on GitHub on this site: https://github.com/SnickCH/InsurgencySandstormDedicatedServer
+shorten: https://git.io/Jyujj
 
 
 # How to get the image
@@ -132,6 +133,8 @@ services:
 The Watchtower documentation from containrrr: https://containrrr.dev/watchtower/arguments/
 
 Cron Job scheduler information for your time: https://pkg.go.dev/github.com/robfig/cron@v1.2.0#hdr-CRON_Expression_Format
+
+or use https://crontab.guru/
 	
 # General Doker info and commands for beginners
 To make it a bit easier for you to start with Docker, we made a few examples on how to work with the containers
@@ -232,7 +235,7 @@ This is my first docker project. If you need more information, find a bug or mis
 
 
 ## Timeline
-28.December 2021 - N0rimaki joined as a contributor. Thank you very much for updating the documentation, all the testing and for your inputs. The documentation is now cleaner and easier to get startet. Now documented watchtower run command and beginner friendly info on how to manage the container
+28.December 2021 - [N0ri](https://github.com/N0rimaki) joined as a contributor. Thank you very much for updating the documentation, all the testing and for your inputs. The documentation is now cleaner and easier to get startet. Now documented watchtower run command and beginner friendly info on how to manage the container
 27.December 2021 - I made the script a bit easier (I will continue to make it easier and document a simpler version for watchtower)
 19.December 2021 - Updated the docker-compose.yml for watchtower
 26.November 2021 - I added a howto for Watchtower, so the container is automatically updated. No need for any scripts and cron jobs. 
