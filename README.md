@@ -102,7 +102,7 @@ If you don't use Mods you can just delete the two line with the ``` Mods.txt ```
 
 
 # Update(s)
-Autobuilds will run on (minimum) weekly base for “latest” and if possible daily. If ther is a server update from Insurgency Sandstorm I will trigger the build earlier (if possible).
+Autobuilds will run on daily base for latest. If ther is a server update from Insurgency Sandstorm I will trigger the build earlier if possible.
 
 The idea is to use this the “container way” to just replace the container instead of updating anything inside the container. Your data will be static and will be loaded in the new container (if configured correctly with the ``` docker run``` command). This makes it even faster for you. You can pull the newest image and during the download your “old” container is still running. Then you can just recreate the container and that’s it. It works perfectly with watchtower. I use the watchtower image from containrrr/watchtower. 
 	
@@ -168,6 +168,7 @@ This is my first docker project. If you need more information, find a bug or mis
 
 
 ## Timeline
+28.December 2021 - N0rimaki joined as a contributor. Thank you very much for updating the documentation, all the testing and for your inputs. The documentation is now cleaner and easier to get startet.
 27.December 2021 - I made the script a bit easier (I will continue to make it easier and document a simpler version for watchtower)
 19.December 2021 - Updated the docker-compose.yml for watchtower
 26.November 2021 - I added a howto for Watchtower, so the container is automatically updated. No need for any scripts and cron jobs. 
