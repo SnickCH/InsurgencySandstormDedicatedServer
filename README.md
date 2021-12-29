@@ -112,7 +112,7 @@ Example of my docker-compose.yml for watchtower. Make sure you use the correct "
 This is a single command that starts watchtower. It will check for new images, download them (if available) and then restart all containers that have new images available. In my example this is done at 21:11:10 (9pm,11min and 10seconds) to show you how to use the schedule parameter. The schedule parameter is the only thing you should change, use the rest 1:1.
 
 ```
-docker run -d --restart=always --name watchtower --volume /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --schedule="10 11 21 * *" --cleanup --rolling-restart --include-stopped --revive-stopped
+docker run -d --restart=always --name watchtower --volume /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --schedule="10 11 21 * * *" --cleanup --rolling-restart --include-stopped --revive-stopped
 ```
 
 
@@ -126,7 +126,7 @@ services:
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: --schedule "10 11 21 * *" --cleanup --rolling-restart --include-stopped --revive-stopped
+    command: --schedule "10 11 21 * * *" --cleanup --rolling-restart --include-stopped --revive-stopped
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
 ```
@@ -134,7 +134,11 @@ The Watchtower documentation from containrrr: https://containrrr.dev/watchtower/
 
 Cron Job scheduler information for your time: https://pkg.go.dev/github.com/robfig/cron@v1.2.0#hdr-CRON_Expression_Format
 
-or use https://crontab.guru/
+The script above run at 21:11:10 every day in the whole year.
+
+|Seconds|Minutes|Hours|Day of month|Month|Day of week|
+| - | - | - | - | - | - |
+|10|11|21|*|*|*|
 	
 # General Doker info and commands for beginners
 To make it a bit easier for you to start with Docker, we made a few examples on how to work with the containers
@@ -168,6 +172,12 @@ docker rm sandstorm
 show the status of all containers
 ```
 docker ps
+
+```
+
+show the LIVE stats of all containers (CPU, Memory, Traffic,...)
+```
+docker stats
 
 ```
 
@@ -232,7 +242,7 @@ MODTRAVEL=$MAP
 # Project status
 
 This is my first docker project. If you need more information, find a bug or mistakes in the documentation it is very appreciated if you contact me. If you need support it would be the best if you create a new thread in the steam discussion for dedicated servers and first check that it is not an general server issue (related to steamcmd or the game). If you think it is a container related issue (based on my image) feel free to contact me.
-
+27101,27131,29091,27102,27132,29092,27103,27133,29093
 
 ## Timeline
 28.December 2021 - [N0ri](https://github.com/N0rimaki) joined as a contributor. Thank you very much for updating the documentation, all the testing and for your inputs. The documentation is now cleaner and easier to get startet. Now documented watchtower run command and beginner friendly info on how to manage the container
