@@ -239,9 +239,9 @@ How it looked when it was wrong, because I created the Admins.txt with root
 
 If you define the Servername in Game.ini, you should remove the following command from the script
 ```
-....
+
 -Hostname="$HNAME" \
-....
+
 ```
 If you define the Maxplayers in the Game.ini, you have to change the following variable
 ```
