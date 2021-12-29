@@ -13,6 +13,10 @@ Here you can check the last update on the container (yes, the project is still m
 In the future all documentation will be on GitHub on this site: https://github.com/SnickCH/InsurgencySandstormDedicatedServer
 shorten: https://git.io/Jyujj
 
+# Where to run the Docker Container
+You can run a VM with Ubuntu Server https://ubuntu.com/download/server
+This server comes with pre-installed Docker runtime (you need to select it in the installation wizard). Give your Server at least 30GB Storage and 4-8GB Memory.
+
 
 # How to get the image
 ```docker pull snickch/insurgencysandstormdedicatedserver```
@@ -50,7 +54,7 @@ MODS=/home/gameadmin/insurgency/Mods
 IMAGE=snickch/insurgencysandstormdedicatedserver:latest
 
 #Set the Gameserver Name
-HNAME="[SN!CK[CH]] my First InsurgencySandstrom Gameserver"
+HNAME="[Sn!ck[CH]] my First InsurgencySandstrom Gameserver"
 
 #Set your tokens you get from the next two Pages
 #https://gamestats.sandstorm.game/
@@ -73,7 +77,6 @@ TMP="?MaxPlayers="
 MODTRAVEL=$MAP$TMP$MAXPlayers
 
 #RCON Config
-RconPassword="xxxxxxxx"
 RCONPORT=22722
 
 #Here you can adjust the game ports (Multiple Server need unique Ports)
@@ -91,7 +94,7 @@ docker run -d --restart=always --name $CNAME -p $GAMEPORT:$GAMEPORT/tcp -p $GAME
 --volume $MODS/:/home/steam/steamcmd/sandstorm/Insurgency/Mods \
 $IMAGE ./InsurgencyServer-Linux-Shipping -Port=$GAMEPORT -QueryPort=$QUERRYPORT \
 -Mods \
--Rcon -RconPassword="$RconPassword" -RconListenPort=$RCONPORT \
+-Rcon \
 -Hostname="$HNAME" \
 -Mutators=$MUTATORS \
 -ModDownloadTravelTo=$MODTRAVEL \
@@ -100,7 +103,16 @@ $IMAGE ./InsurgencyServer-Linux-Shipping -Port=$GAMEPORT -QueryPort=$QUERRYPORT 
 
 If you don't use Mods you can just delete the two line with the ``` Mods.txt ``` and ```Mods``` folder. The same for ``` Engine.ini ``` or ``` Admin.txt ``` if you are not using it. On my host where docker is running, my path with the config is ``` /home/gameadmin/insurgency/... ``` . You have to replace this with the path you are using.
 
-
+# RCON
+With Rcon you can remote manage your server, change maps, ban user, etc...
+We recommend this tool. [ISRT on GitHub](https://github.com/olli-e/ISRT) or [ISRT Website](https://www.isrt.info/)
+Add this tho you ``` Game.ini ```, change the Ports and add an password.
+```
+[Rcon]
+bEnabled=True
+Password=superStrongPassword
+ListenPort=22722
+bAllowConsoleCommands=True```
 
 # Update(s)
 Autobuilds will run on daily base for latest. If ther is a server update from Insurgency Sandstorm I will trigger the build earlier if possible.
@@ -137,7 +149,7 @@ Cron Job scheduler information for your time: https://pkg.go.dev/github.com/robf
 The script above run at 21:11:10 every day in the whole year.
 
 |Seconds|Minutes|Hours|Day of month|Month|Day of week|
-| - | - | - | - | - | - |
+|-|-|-|-|-|-|
 |10|11|21|*|*|*|
 	
 # General Doker info and commands for beginners
@@ -245,7 +257,8 @@ This is my first docker project. If you need more information, find a bug or mis
 27101,27131,29091,27102,27132,29092,27103,27133,29093
 
 ## Timeline
-28.December 2021 - [N0ri](https://github.com/N0rimaki) joined as a contributor. Thank you very much for updating the documentation, all the testing and for your inputs. The documentation is now cleaner and easier to get startet. Now documented watchtower run command and beginner friendly info on how to manage the container
+29.December 2021 - n0ri; Added the RCON with ISRT, Remove RCON from start script, added it to the ```Game.ini```
+28.December 2021 - [n0ri](https://github.com/N0rimaki) joined as a contributor. Thank you very much for updating the documentation, all the testing and for your inputs. The documentation is now cleaner and easier to get startet. Now documented watchtower run command and beginner friendly info on how to manage the container
 27.December 2021 - I made the script a bit easier (I will continue to make it easier and document a simpler version for watchtower)
 19.December 2021 - Updated the docker-compose.yml for watchtower
 26.November 2021 - I added a howto for Watchtower, so the container is automatically updated. No need for any scripts and cron jobs. 
