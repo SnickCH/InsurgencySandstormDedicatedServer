@@ -255,7 +255,7 @@ MODTRAVEL=$MAP
 # Project status
 
 This is my first docker project. If you need more information, find a bug or mistakes in the documentation it is very appreciated if you contact me. If you need support it would be the best if you create a new thread in the steam discussion for dedicated servers and first check that it is not an general server issue (related to steamcmd or the game). If you think it is a container related issue (based on my image) feel free to contact me.
-27101,27131,29091,27102,27132,29092,27103,27133,29093
+
 
 ## Timeline
 29.December 2021 - n0ri; Added the RCON with ISRT, Remove RCON from start script, added it to the ```Game.ini```
