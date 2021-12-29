@@ -112,7 +112,8 @@ Add this tho you ``` Game.ini ```, change the Ports and add an password.
 bEnabled=True
 Password=superStrongPassword
 ListenPort=22722
-bAllowConsoleCommands=True```
+bAllowConsoleCommands=True
+```
 
 # Update(s)
 Autobuilds will run on daily base for latest. If ther is a server update from Insurgency Sandstorm I will trigger the build earlier if possible.
