@@ -185,13 +185,11 @@ docker rm sandstorm
 show the status of all containers
 ```
 docker ps
-
 ```
 
 show the LIVE stats of all containers (CPU, Memory, Traffic,...)
 ```
 docker stats
-
 ```
 
 show all docker images that are localy available. Here you get the ImageID for the next command
@@ -215,7 +213,6 @@ If your server doesn't start with Mods or without settings, make sure that all t
 
 ```
 chown USER:GROUP Game.ini Mods Engine.ini Admins.txt Mods.txt MapCycle.txt
-
 ```
 
 Example how it should look, if your user is debian with the group debian
