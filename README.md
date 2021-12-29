@@ -147,7 +147,7 @@ The Watchtower documentation from containrrr: https://containrrr.dev/watchtower/
 
 Cron Job scheduler information for your time: https://pkg.go.dev/github.com/robfig/cron@v1.2.0#hdr-CRON_Expression_Format
 
-The script above run at 21:11:10 every day in the whole year.
+The script above run at 21:11:10 every day in the whole year (9pm,11min and 10seconds).
 
 |Seconds|Minutes|Hours|Day of month|Month|Day of week|
 |-|-|-|-|-|-|
