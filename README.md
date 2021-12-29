@@ -104,9 +104,9 @@ $IMAGE ./InsurgencyServer-Linux-Shipping -Port=$GAMEPORT -QueryPort=$QUERRYPORT 
 If you don't use Mods you can just delete the two line with the ``` Mods.txt ``` and ```Mods``` folder. The same for ``` Engine.ini ``` or ``` Admin.txt ``` if you are not using it. On my host where docker is running, my path with the config is ``` /home/gameadmin/insurgency/... ``` . You have to replace this with the path you are using.
 
 # RCON
-With Rcon you can remote manage your server, change maps, ban user, etc...
+With Rcon you can remote manage your server, change maps, ban user, etc.
 We recommend this tool. [ISRT on GitHub](https://github.com/olli-e/ISRT) or [ISRT Website](https://www.isrt.info/)
-Add this to your ``` Game.ini ``` and change the Ports, add a password.
+Add this to your ``` Game.ini ``` and change the ports, add a password. Make sure that this is the same port (rcon) as in the script (variable: $RCONPORT).
 ```
 [Rcon]
 bEnabled=True
