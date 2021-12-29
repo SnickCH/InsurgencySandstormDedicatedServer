@@ -106,7 +106,7 @@ If you don't use Mods you can just delete the two line with the ``` Mods.txt ```
 # RCON
 With Rcon you can remote manage your server, change maps, ban user, etc...
 We recommend this tool. [ISRT on GitHub](https://github.com/olli-e/ISRT) or [ISRT Website](https://www.isrt.info/)
-Add this tho you ``` Game.ini ```, change the Ports and add an password.
+Add this to your ``` Game.ini ``` and change the Ports, add a password.
 ```
 [Rcon]
 bEnabled=True
