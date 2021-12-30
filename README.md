@@ -4,36 +4,33 @@
 # Insurgency Sandstorm – customisable dedicated server
 This repository contains a docker image with a dedicated server for Insurgency Sandstorm (vanilla) that you can fully customise to your need for coop and PVP servers. 
 
-This image will be build daily (since July 2020) so you don’t have to update anything inside a container. I tried to build the image as “best-practice” as possible and to document everything for you. If you have any questions or suggetions please feel free open an "issue" here on my project https://github.com/SnickCH/InsurgencySandstormDedicatedServer
+This image will be build daily (since July 2020) so you don’t have to update anything inside a container. I tried to build the image as “best-practice” as possible and to document everything for you. If you have any questions or suggetions please feel free open an [issue](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/issues).
+shortened URL to the Project: https://git.io/Jyujj
+
 
 Here you can check the last update on the container (yes, the project is still maintained) https://hub.docker.com/r/snickch/insurgencysandstormdedicatedserver
 
 
 # Documentation
-In the future all documentation will be on GitHub on this site: https://github.com/SnickCH/InsurgencySandstormDedicatedServer
-shorten: https://git.io/Jyujj
-
-# Where to run the Docker Container
-You can run a VM with Ubuntu Server https://ubuntu.com/download/server
-This server comes with pre-installed Docker runtime (you need to select it in the installation wizard). Give your Server at least 30GB Storage and 4-8GB Memory.
-
-
-# How to get the image
-```docker pull snickch/insurgencysandstormdedicatedserver```
-
-Or you can run the full command (documented below). On the first run the container will be downloaded if it doesn't exist locally.
+All documentation will be on GitHub on the [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/)
 
 
 # How to launch
+## tl;dr - all you need to know for the quick launch
+If you just wanna run the Server without reading the whole [docu](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/) it's okay. (Read it another day)
+
 
 Simple command syntax. You can use all the syntax you are allready using on your server. Just add them on the travel parameters. 
 ```
 docker run <docker parameters> image ./InsurgencyServer-Linux-Shipping <travel-parameters>
 ```
-I suggest, you create a "start.sh" script and make it executable (chmod +x). So you can just run the script with ./restart.sh in your linux console
+I suggest, you create a ```restart.sh``` script and make it executable ```chmod +x```
 
+```chmod +x restart.sh```
 
-Full syntax example for Linux (docker), if you create a ./restart.sh script. You can copy this 1:1 and only have to adjust the variables
+So you can just run the script with ```./restart.sh``` in your linux console
+
+Full syntax example for Linux (docker), if you create a ```./restart.sh``` script. You can copy this 1:1 and only have to adjust the variables
 ```
 #Set the container Name, every Container need an unique name (not the GameServer Name)
 CNAME=is_myfirstserver
@@ -103,151 +100,19 @@ $IMAGE ./InsurgencyServer-Linux-Shipping -Port=$GAMEPORT -QueryPort=$QUERRYPORT 
 
 If you don't use Mods you can just delete the two line with the ``` Mods.txt ``` and ```Mods``` folder. The same for ``` Engine.ini ``` or ``` Admin.txt ``` if you are not using it. On my host where docker is running, my path with the config is ``` /home/gameadmin/insurgency/... ``` . You have to replace this with the path you are using.
 
-# RCON
-With Rcon you can remote manage your server, change maps, ban user, etc.
-We recommend this tool. [ISRT on GitHub](https://github.com/olli-e/ISRT) or [ISRT Website](https://www.isrt.info/)
-Add this to your ``` Game.ini ``` and change the ports, add a password. Make sure that this is the same port (rcon) as in the script (variable: $RCONPORT).
-```
-[Rcon]
-bEnabled=True
-Password=superStrongPassword
-ListenPort=22722
-bAllowConsoleCommands=True
-```
+
+
+# Where to run the Docker Container
+Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/requirements) about this topic. 
+
+# How to get the image
+Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/docker) about this topic. 
 
 # Update(s)
-Autobuilds will run on daily base for latest. If ther is a server update from Insurgency Sandstorm I will trigger the build earlier if possible.
-
-The idea is to use this the “container way” to just replace the container instead of updating anything inside the container. Your data will be static and will be loaded in the new container (if configured correctly with the ``` docker run``` command). This makes it even faster for you. You can pull the newest image and during the download your “old” container is still running. Then you can just recreate the container and that’s it. It works perfectly with watchtower. I use the watchtower image from containrrr/watchtower. 
-	
-Example of my docker-compose.yml for watchtower. Make sure you use the correct "schedule" parameters. In this example it will always at 8am check for new images, download them (if available) and then restart the container. Be aware that the container will be forcibly shutdown - if players are on the server they might not find it very amazing ;)
-
-This is a single command that starts watchtower. It will check for new images, download them (if available) and then restart all containers that have new images available. In my example this is done at 21:11:10 (9pm,11min and 10seconds) to show you how to use the schedule parameter. The schedule parameter is the only thing you should change, use the rest 1:1.
-
-```
-docker run -d --restart=always --name watchtower --volume /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --schedule="10 11 21 * * *" --cleanup --rolling-restart --include-stopped --revive-stopped
-```
-
-
-This is the docker-compose.yml file, if you like to use docker-compose instad of docker run. If you use the above command to run watchtower, you don't need this yml file. If you don't know what docker-compose is or how to use it, stick to the above command to run watchtower
-
-```
-version: "3" 
-services:
-   watchtower:
-    image: containrrr/watchtower
-    restart: always
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    command: --schedule "10 11 21 * * *" --cleanup --rolling-restart --include-stopped --revive-stopped
-    labels:
-      - "com.centurylinklabs.watchtower.enable=true"
-```
-The Watchtower documentation from containrrr: https://containrrr.dev/watchtower/arguments/
-
-Cron Job scheduler information for your time: https://pkg.go.dev/github.com/robfig/cron@v1.2.0#hdr-CRON_Expression_Format
-
-The script above run at 21:11:10 every day in the whole year (9pm,11min and 10seconds).
-
-|Seconds|Minutes|Hours|Day of month|Month|Day of week|
-|-|-|-|-|-|-|
-|10|11|21|*|*|*|
-	
-# General Doker info and commands for beginners
-To make it a bit easier for you to start with Docker, we made a few examples on how to work with the containers
-
-Get logs from the container (example: on watchtower you can check the next run)
-"docker logs containername" gives you the output on what is going on inside the container named "watchtower"
-```
-docker logs watchtower
-```
-This should give you something similar to 
-```
-time="2021-12-28T10:46:28Z" level=info msg="Watchtower 1.3.0\nUsing no notifications\nChecking all containers (except explicitly disabled with label)\nScheduling first run: 2021-12-29 10:00:00 +0000 UTC\nNote that the first check will be performed in 23 hours, 13 minutes, 31 seconds"
-```
-
-For the sandstorm server (named sandstorm) with many logs you can limit it to the last 20 lines
-
-```
-docker logs --tail=20 sandstorm
-```
-
-Stop a container named "sandstorm"
-```
-docker stop sandstorm
-```
-
-Delete a stopped container named "sandstorm"
-```
-docker rm sandstorm
-```
-
-show the status of all containers
-```
-docker ps
-```
-
-show the LIVE stats of all containers (CPU, Memory, Traffic,...)
-```
-docker stats
-```
-
-show all docker images that are localy available. Here you get the ImageID for the next command
-```
-docker images -a
-```
-
-Delete a specific docker image (not needed with watchtower)
-```
-docker image rm ImageID
-```
-
-The following parameter which is used here makes sure, the container is always started on server reboot where the container is running and also restarts the container if inside the container the gamen crashes or shutsdown
-
-```
---restart=always
-```
+Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/updates) about this topic. 
 
 # Troubleshooting
-If your server doesn't start with Mods or without settings, make sure that all the files (Game.ini etc.) and the "Mods" Folder have the correct user permission. You can change the permissions with the chwon command. Make sure you replace USER and GROUP with your information.
-
-```
-chown USER:GROUP Game.ini Mods Engine.ini Admins.txt Mods.txt MapCycle.txt
-```
-
-Example how it should look, if your user is debian with the group debian
-
-```
--rw-r--r-- 1 debian debian   87 Dec 13 17:10 Admins.txt
--rw-r--r-- 1 debian debian 1.8K Dec 14 15:20 Engine.ini
--rw-r--r-- 1 debian debian  22K Dec 21 19:12 Game.ini
--rw-r--r-- 1 debian debian 5.5K Dec 14 17:22 MapCycle.txt
--rw-r--r-- 1 debian debian   82 Dec 14 17:22 Mods.txt
-```
-
-How it looked when it was wrong, because I created the Admins.txt with root
-```
--rw-r--r-- 1 root   root     87 Dec 13 17:10 Admins.txt
--rw-r--r-- 1 debian debian 1.8K Dec 14 15:20 Engine.ini
--rw-r--r-- 1 debian debian  22K Dec 21 19:12 Game.ini
--rw-r--r-- 1 debian debian 5.5K Dec 14 17:22 MapCycle.txt
--rw-r--r-- 1 debian debian   82 Dec 14 17:22 Mods.txt
-```
-
-If you define the Servername in Game.ini, you should remove the following command from the script
-```
-
--Hostname="$HNAME" \
-
-```
-If you define the Maxplayers in the Game.ini, you have to change the following variable
-```
-MODTRAVEL=$MAP$TMP$MAXPlayers
-```
-to 
-```
-MODTRAVEL=$MAP
-```
+Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/Troubleshooting) about this topic. 
 
 # Project status
 
@@ -255,6 +120,7 @@ This is my first docker project. If you need more information, find a bug or mis
 
 
 ## Timeline
+30.December 2021 - n0ri; activate the wiki and remove the Wall of text from the Readme.
 29.December 2021 - n0ri; Added the RCON with ISRT, Remove RCON from start script, added it to the ```Game.ini```
 28.December 2021 - [n0ri](https://github.com/N0rimaki) joined as a contributor. Thank you very much for updating the documentation, all the testing and for your inputs. The documentation is now cleaner and easier to get startet. Now documented watchtower run command and beginner friendly info on how to manage the container
 27.December 2021 - I made the script a bit easier (I will continue to make it easier and document a simpler version for watchtower)
