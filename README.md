@@ -106,7 +106,7 @@ If you don't use Mods you can just delete the two line with the ``` Mods.txt ```
 Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/requirements) about this topic. Here are some basic information about the needed system requirements.
 
 # How to get the image
-Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/docker) about this topic. 
+Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/requirements#docker-image) about this topic. 
 
 # Update(s)
 Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/updates) about this topic. 
