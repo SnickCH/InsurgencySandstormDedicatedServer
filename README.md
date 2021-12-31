@@ -32,7 +32,7 @@ I suggest, you create a ```restart.sh``` script and make it executable ```chmod 
 So you can just run the script with ```./restart.sh``` in your linux console
 
 Full syntax example for Linux (docker), if you create a ```./restart.sh``` script. You can copy this 1:1 and only have to adjust the variables
-```
+```bash
 #Set the container Name, every Container need an unique name (not the GameServer Name)
 CNAME=is_myfirstserver
 
