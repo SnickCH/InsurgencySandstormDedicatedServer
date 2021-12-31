@@ -1,3 +1,4 @@
+(Scenario="Scenario_Citadel_Survival", Lighting="Day")
 (Scenario="Scenario_Farmhouse_Survival", Lighting="Day")
 (Scenario="Scenario_PowerPlant_Survival", Lighting="Day")
 (Scenario="Scenario_Ministry_Survival", Lighting="Day")
