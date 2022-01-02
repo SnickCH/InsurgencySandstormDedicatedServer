@@ -32,20 +32,28 @@ The mainpart about our project is on the main readme page. All additional docume
 
 
 # How to launch
-## All you need to know for the quick launch
+## Main syntax
 If you just wanna run the Server without reading the whole [docu](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/) it's okay. (Read it another day)
-
 
 Simple command syntax. You can use all the syntax you are allready using on your server. Just add them on the travel parameters. 
 ```
 docker run <docker parameters> image ./InsurgencyServer-Linux-Shipping <travel-parameters>
 ```
-I suggest, you create a ```restart.sh``` script and make it executable ```chmod +x```
 
-```chmod +x restart.sh```
+## Prepared startscript example: Quick overview
+To make life a bit easier, we prepared a fully functional script (called ```restart.sh```). The first run it creates and start your new server. From then on, it restarts it. The only thing you have to do is to fill out the variables, the rest does the script for you. 
 
-So you can just run the script with ```./restart.sh``` in your linux console
+Task overview
+- Create a ```restart.sh``` script
+- Make it executable ```chmod +x```
+- Copy the script from here to your server
+- Edit the variables
+- Create your Game.ini, Engine.ini, Admin.txt, Mods.txt or use our example files
+- Make sure you have set the correct tokens (GLSTTOKEN and GAMESTATS) if you want to have your server listed + XP enabled
+- Make sure you set the correct ports that you want to use and the corresponding portforwarding on your router
+- Run the restart.sh script ```./restart.sh``` in your linux console
 
+## Prepared startscript example: documentation
 Full syntax example for Linux (docker), if you create a ```./restart.sh``` script. You can copy this 1:1 and only have to adjust the variables
 ```bash
 #Set the container Name, every Container need an unique name (not the GameServer Name)
