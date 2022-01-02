@@ -125,15 +125,20 @@ $IMAGE ./InsurgencyServer-Linux-Shipping -Port=$GAMEPORT -QueryPort=$QUERRYPORT 
 If you don't use Mods you can just delete the two line with the ``` Mods.txt ``` and ```Mods``` folder. The same for ``` Engine.ini ``` or ``` Admin.txt ``` if you are not using it. On my host where docker is running, my path with the config is ``` /home/gameadmin/insurgency/... ``` . You have to replace this with the path you are using.
 
 # Update(s)
-The image is updated daily, so you don't have to update anything inside the container. Check the dokumentation how you can use watchtower to let your server restart daily and then use the newest image (downtime of your game server <1min to get the newest version).
-Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/updates) about this topic. 
+The image is updated on a daily base between 02:00 am and 04:00 am UTC+1. You don't have to update anything inside the container. Check the dokumentation how you can use watchtower to let your server restart daily and then use the newest image (downtime of your game server <1min to get the newest version). 
 
+What watchtower does
+- Check if a new image is available
+- Download the new image - this may take a few minutes, depending on your internect speed (3-5gb to download)
+- Restart the container and use the new image (<1min)
+
+Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/updates) about this topic. 
 
 # Where to run the Docker Container
 Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/requirements) about this topic. Here are some basic information about the needed system requirements if you are new to this topic.
 
 # How to get the image
-The ```restart.sh``` script above downloads automatically the image at the first start, if it is not locally available for your docker instance. You also can automatically download the image
+The ```restart.sh``` script above downloads automatically the image at the first start, if it is not locally available for your docker instance. You also can automatically download the image. The ```restart.sh``` does NOT update the image. Use watchtower for this (check the "updates" section)
 ```
 docker pull snickch/insurgencysandstormdedicatedserver
 ```
@@ -148,11 +153,18 @@ This is my first docker project. If you need more information, find a bug or mis
 
 
 ## Timeline
+02.January 2022 - Snick: Happy new year! We are working on a easier to read documentation and published the first version. 
+
 30.December 2021 - n0ri; activate the wiki and remove the Wall of text from the Readme.
+
 29.December 2021 - n0ri; Added the RCON with ISRT, Remove RCON from start script, added it to the ```Game.ini```
+
 28.December 2021 - [n0ri](https://github.com/N0rimaki) joined as a contributor. Thank you very much for updating the documentation, all the testing and for your inputs. The documentation is now cleaner and easier to get startet. Now documented watchtower run command and beginner friendly info on how to manage the container
+
 27.December 2021 - I made the script a bit easier (I will continue to make it easier and document a simpler version for watchtower)
+
 19.December 2021 - Updated the docker-compose.yml for watchtower
+
 26.November 2021 - I added a howto for Watchtower, so the container is automatically updated. No need for any scripts and cron jobs. 
 
 23.March 2021 - Thanks to jcoker85 I corrected the path in the readme to the .ini files. Now they should be correct and can be copied 1:1 from the example.
