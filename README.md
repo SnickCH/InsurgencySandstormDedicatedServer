@@ -5,14 +5,18 @@
 This repository contains a docker image with a dedicated server for Insurgency Sandstorm vanilla with mod support that you can fully customise to your need for coop and PVP servers. 
 
 Key features
-- Daily updated image (no update inside the container needed)
+- Daily updated image
 - Ready to use (no additonal downloads needed for vanilla server, only mods download)
-- Scripts for easy starts, automated image update (container recreation) and game config examples provided
+- Mody are fully supported and working
+- Scripts for easy starts, automated image update (*1) and game config examples provided
 - Project with acive maintainers (N0rimaki, Snick) if you have questions or suggestions
+- Nothing to update inside the container (*1)
+- Update process in the focus: new game server should be up & running <1min (*1)
 
-This image will be build daily (since July 2020) so you don’t have to update anything inside a container. I tried to build the image as “best-practice” as possible and to document everything for you. If you have any questions or suggetions please feel free open an [issue](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/issues).
+(*1) The container way: dont update anything inside the container. Just use the newest image. Therefore you don't have to worry about failed updates or missing libraries etc., we do the work for you.
+
+If you have any questions or suggetions please feel free open an [issue](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/issues).
 shortened URL to the Project: https://git.io/Jyujj
-
 
 Here you can check the last update on the container (yes, the project is still maintained) https://hub.docker.com/r/snickch/insurgencysandstormdedicatedserver
 
@@ -112,9 +116,14 @@ If you don't use Mods you can just delete the two line with the ``` Mods.txt ```
 Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/requirements) about this topic. Here are some basic information about the needed system requirements.
 
 # How to get the image
+The ```restart.sh``` script above downloads automatically the image at the first start, if it is not locally available for your docker instance. You also can automatically download the image
+```
+docker pull snickch/insurgencysandstormdedicatedserver
+```
 Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/requirements#docker-image) about this topic. 
 
 # Update(s)
+The image is updated daily, so you don't have to update anything inside the container. Check the dokumentation how you can use watchtower to let your server restart daily and then use the newest image (downtime of your game server <1min to get the newest version).
 Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/updates) about this topic. 
 
 # Troubleshooting
