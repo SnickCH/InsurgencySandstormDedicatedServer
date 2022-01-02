@@ -25,8 +25,8 @@ Here you can check the last update on the container (yes, the project is still m
 
 It is very simple to start
 - [Install docker](https://docs.docker.com/get-docker/)
-- prepare the ```restart.sh``` script (how to launch section)
-- setup watchtower to get the updated image on a daily base (updates section)
+- prepare the ```restart.sh``` script ("How to launch" section)
+- setup watchtower to get the updated image on a daily base ("Updates" section)
 
 The mainpart about our project is on the main readme page. All additional documentation will be on GitHub on the [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/)
 
