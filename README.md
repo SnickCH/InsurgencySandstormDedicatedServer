@@ -2,11 +2,10 @@
 [![DockerHub Badge](http://dockeri.co/image/snickch/insurgencysandstormdedicatedserver)](https://hub.docker.com/r/snickch/insurgencysandstormdedicatedserver/)
 
 # Insurgency Sandstorm – customisable dedicated server
-This repository contains a docker image with a dedicated server for Insurgency Sandstorm (vanilla) that you can fully customise to your need for coop and PVP servers. 
+This repository contains a docker image with a dedicated server for Insurgency Sandstorm vanilla with mod support that you can fully customise to your need for coop and PVP servers. 
 
-This image will be build daily (since July 2020) so you don’t have to update anything inside a container. I tried to build the image as “best-practice” as possible and to document everything for you. If you have any questions or suggetions please feel free open an [issue](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/issues).
+This image will be build daily (since July 2020) so you don’t have to update anything inside a container. I tried to build the image as “best-practice” as possible and to document everything for you. There is nothing to update inside the container, the image is ready to be used immediately after download. As soon as there is a new image (daily), the container can be rectreated with the new image. This is the container way (no upadtes needed inside the container). If you have any questions or suggetions please feel free open an [issue](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/issues).
 shortened URL to the Project: https://git.io/Jyujj
-
 
 
 Here you can check the last update on the container (yes, the project is still maintained) https://hub.docker.com/r/snickch/insurgencysandstormdedicatedserver
