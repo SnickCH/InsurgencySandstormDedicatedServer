@@ -21,12 +21,18 @@ shortened URL to the Project: https://git.io/Jyujj
 Here you can check the last update on the container (yes, the project is still maintained) https://hub.docker.com/r/snickch/insurgencysandstormdedicatedserver
 
 
-# Documentation
-All documentation will be on GitHub on the [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/)
+# How to get started
+
+It is very simple to start
+- [Install docker](https://docs.docker.com/get-docker/)
+- prepare the ```restart.sh``` script (how to launch section)
+- setup watchtower to get the updated image on a daily base (updates section)
+
+The mainpart about our project is on the main readme page. All additional documentation will be on GitHub on the [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/)
 
 
 # How to launch
-## tl;dr - all you need to know for the quick launch
+## All you need to know for the quick launch
 If you just wanna run the Server without reading the whole [docu](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/) it's okay. (Read it another day)
 
 
@@ -110,10 +116,13 @@ $IMAGE ./InsurgencyServer-Linux-Shipping -Port=$GAMEPORT -QueryPort=$QUERRYPORT 
 
 If you don't use Mods you can just delete the two line with the ``` Mods.txt ``` and ```Mods``` folder. The same for ``` Engine.ini ``` or ``` Admin.txt ``` if you are not using it. On my host where docker is running, my path with the config is ``` /home/gameadmin/insurgency/... ``` . You have to replace this with the path you are using.
 
+# Update(s)
+The image is updated daily, so you don't have to update anything inside the container. Check the dokumentation how you can use watchtower to let your server restart daily and then use the newest image (downtime of your game server <1min to get the newest version).
+Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/updates) about this topic. 
 
 
 # Where to run the Docker Container
-Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/requirements) about this topic. Here are some basic information about the needed system requirements.
+Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/requirements) about this topic. Here are some basic information about the needed system requirements if you are new to this topic.
 
 # How to get the image
 The ```restart.sh``` script above downloads automatically the image at the first start, if it is not locally available for your docker instance. You also can automatically download the image
@@ -121,10 +130,6 @@ The ```restart.sh``` script above downloads automatically the image at the first
 docker pull snickch/insurgencysandstormdedicatedserver
 ```
 Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/requirements#docker-image) about this topic. 
-
-# Update(s)
-The image is updated daily, so you don't have to update anything inside the container. Check the dokumentation how you can use watchtower to let your server restart daily and then use the newest image (downtime of your game server <1min to get the newest version).
-Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/updates) about this topic. 
 
 # Troubleshooting
 Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/Troubleshooting) about this topic. 
