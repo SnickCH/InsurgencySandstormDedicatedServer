@@ -1,10 +1,10 @@
 ![](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/blob/master/sandstorm-logo.png)
 [![DockerHub Badge](http://dockeri.co/image/snickch/insurgencysandstormdedicatedserver)](https://hub.docker.com/r/snickch/insurgencysandstormdedicatedserver/)
 
-# Insurgency Sandstorm – customisable dedicated server
-This repository contains a docker image with a dedicated server for Insurgency Sandstorm vanilla with mod support that you can fully customise to your need for coop and PVP servers. 
+## Insurgency Sandstorm – customisable dedicated server 🎮 🐳
+This repository contains a docker image with a dedicated server for Insurgency Sandstorm (vanilla) that you can fully customise to your need for coop and PVP servers. 
 
-Key features
+Key features 
 - Daily updated image
 - Ready to use (no additonal downloads needed for vanilla server, only mods download)
 - Mody are fully supported and working
@@ -13,160 +13,387 @@ Key features
 - Nothing to update inside the container (*1)
 - Update process in the focus: new game server should be up & running <1min (*1)
 
-(*1) The container way: dont update anything inside the container. Just use the newest image. Therefore you don't have to worry about failed updates or missing libraries etc., we do the work for you.
+(*1) The container way: dont update anything inside the container. Just use the newest image. Therefore you don't have to worry about failed updates or missing libraries etc., we do the work for you. 
 
 If you have any questions or suggetions please feel free open an [issue](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/issues).
 shortened URL to the Project: https://git.io/Jyujj
 
+
+
 Here you can check the last update on the container (yes, the project is still maintained) https://hub.docker.com/r/snickch/insurgencysandstormdedicatedserver
 
+---
 
-# How to get started
+# Quick Start - tl;dr 
 
-It is very simple to start
-- [Install docker](https://docs.docker.com/get-docker/)
-- prepare the ```restart.sh``` script ("How to launch" section)
-- setup watchtower to get the updated image on a daily base ("Updates" section)
+All you need to know for the quick start, read the rest another day. It's okay!
 
-The mainpart about our project is on the main readme page. All additional documentation will be on GitHub on the [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/)
+### 1. You need a Linux Host for the docker container
+
+For this example the Linux-user ist _gameadmin_ and the game-root-folder is _/home/gameadmin/insurgeny/_   
+Server [requirements](#requirements)   
 
 
-# How to launch
-## Main syntax
-If you just wanna run the Server without reading the whole [docu](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/) it's okay. (Read it another day)
+### 2. Copy the Example
+ 
+Copy all files from the [Example](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/tree/master/Examples/Survival_Mods) in your home folder.
 
-Simple command syntax. You can use all the syntax you are allready using on your server. Just add them on the travel parameters. 
-```
-docker run <docker parameters> image ./InsurgencyServer-Linux-Shipping <travel-parameters>
-```
+_/home/gameadmin/insurgeny/survival_
 
-## Prepared startscript example: Quick overview
-To make life a bit easier, we prepared a fully functional script (called ```restart.sh```). The first run it creates and start your new server. From then on, it restarts it. The only thing you have to do is to fill out the variables, the rest does the script for you. 
+### 3. Make the script executable 
 
-Task overview
-- Create a ```restart.sh``` script
-- Make it executable ```chmod +x```
-- Copy the script from here to your server
-- Edit the variables
-- Create your Game.ini, Engine.ini, Admin.txt, Mods.txt or use our example files
-- Make sure you have set the correct tokens (GLSTTOKEN and GAMESTATS) if you want to have your server listed + XP enabled
-- Make sure you set the correct ports that you want to use and the corresponding portforwarding on your router
-- Run the restart.sh script ```./restart.sh``` in your linux console
-
-## Prepared startscript example: documentation
-Full syntax example for Linux (docker), if you create a ```./restart.sh``` script. You can copy this 1:1 and only have to adjust the variables
-```bash
-#Set the container Name, every Container need an unique name (not the GameServer Name)
-CNAME=is_myfirstserver
-
-#Optional: if a container with the name sandstorm exist, it will be stopped and deleted
-echo docker container will be stopped
-docker stop $CNAME
-echo docker container will be removed
-docker rm $CNAME
-
-#Path to folder where the configs are stored
-CONFDIR=/home/gameadmin/insurgency
-
-#Path to folder where the mods should be stored
-MODS=/home/gameadmin/insurgency/Mods
-
-#The image that should be used. Don't change it ;)
-IMAGE=snickch/insurgencysandstormdedicatedserver:latest
-
-#Set the Gameserver Name
-HNAME="[Sn!ck[CH]] my First InsurgencySandstrom Gameserver"
-
-#Set your tokens you get from the next two Pages
-#https://gamestats.sandstorm.game/
-#https://steamcommunity.com/dev/managegameservers App-ID:581320
-GSLTTOKEN="XXXXXXXX"
-GAMESTATSTOKEN="XXXXXXXX"
-
-#Set your mutators for the server you will get it from https://mod.io
-#You need an API-Key from https://mod.io/apikey/ which goes to the Engine.ini 
-MUTATORS="XXX,YYY,ZZZ"
-
-#Set the map which should be used on start (ModDownloadTravelTo makes sure your mods are started with the first map and the MaxPlayer you want)
-MAP="Precinct?Scenario=Scenario_Precinct_Checkpoint_Security?lighting=day"
-
-#Set maximal players
-MAXPlayers=20
-
-#Do not change the next 2 Variables
-TMP="?MaxPlayers="
-MODTRAVEL=$MAP$TMP$MAXPlayers
-
-#RCON Config
-RCONPORT=22722
-
-#Here you can adjust the game ports (Multiple Server need unique Ports)
-GAMEPORT=27102
-QUERRYPORT=27131
-
-#Here starts the script, you shouldn't change anything here, you can all do with the variables above
-echo start docker container
-docker run -d --restart=always --name $CNAME -p $GAMEPORT:$GAMEPORT/tcp -p $GAMEPORT:$GAMEPORT/udp -p $QUERRYPORT:$QUERRYPORT/tcp -p $QUERRYPORT:$QUERRYPORT/udp -p $RCONPORT:$RCONPORT -p $RCONPORT:$RCONPORT/udp \
---volume $CONFDIR/Game.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Game.ini:ro \
---volume $CONFDIR/Engine.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Engine.ini:ro \
---volume $CONFDIR/Admins.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/Admins.txt:ro \
---volume $CONFDIR/Mods.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/Mods.txt:ro \
---volume $CONFDIR/MapCycle.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/MapCycle.txt:ro \
---volume $MODS/:/home/steam/steamcmd/sandstorm/Insurgency/Mods \
-$IMAGE ./InsurgencyServer-Linux-Shipping -Port=$GAMEPORT -QueryPort=$QUERRYPORT \
--Mods \
--Rcon \
--Hostname="$HNAME" \
--Mutators=$MUTATORS \
--ModDownloadTravelTo=$MODTRAVEL \
--GSLTToken=$GSLTTOKEN  -GameStatsToken=$GAMESTATSTOKEN
+Use  ```chmod +x``` on _start_survival.sh_   
+```console
+chmod +x start_survival.sh
 ```
 
-If you don't use Mods you can just delete the two line with the ``` Mods.txt ``` and ```Mods``` folder. The same for ``` Engine.ini ``` or ``` Admin.txt ``` if you are not using it. On my host where docker is running, my path with the config is ``` /home/gameadmin/insurgency/... ``` . You have to replace this with the path you are using.
+### 4. Change permissions
 
-# Update(s)
-The image is updated on a daily base between 02:00 am and 04:00 am UTC+1. You don't have to update anything inside the container. Check the dokumentation how you can use watchtower to let your server restart daily and then use the newest image (downtime of your game server <1min to get the newest version). 
+You will need to adjust the Permissions 
 
-What watchtower does
-- Check if a new image is available
-- Download the new image - this may take a few minutes, depending on your internect speed (3-5gb to download)
-- Restart the container and use the new image (<1min)
+replace user and usergroup with your setup. Normaly both are just your username. If your user is "gameadmin" you use "gameadmin:gameadmin"
 
-Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/updates) about this topic. 
-
-# Where to run the Docker Container
-Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/requirements) about this topic. Here are some basic information about the needed system requirements if you are new to this topic.
-
-# How to get the image
-The ```restart.sh``` script above downloads automatically the image at the first start, if it is not locally available for your docker instance. You also can automatically download the image. The ```restart.sh``` does NOT update the image. Use watchtower for this (check the "updates" section)
+```console 
+chown user:usergroup Game.ini Mods Engine.ini Admins.txt Mods.txt MapCycle.txt 
 ```
+
+### 5. Change the values of the variables
+
+Where to get the [Tokens](#tokens)
+
+in _[start_survival.sh](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/blob/master/Examples/Survival_Mods/start_survival.sh)_   
+```GSLTTOKEN```   
+```GAMESTATSTOKEN```  
+```GAMEPORT```   
+```QUERRYPORT```
+
+in _[Engine.ini](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/blob/master/Examples/Survival_Mods/Engine.ini)_   
+mod.io API-Key
+
+in _[Game.ini](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/blob/master/Examples/Survival_Mods/Game.ini)_   
+```Password``` for Rcon   
+```ListenPort``` for Rcon   
+```ServerHostname```   
+
+
+### 6. make a Port Fowarding
+
+Setup a Port Fowarding for these Ports ```GAMEPORT``` ```QUERRYPORT``` on your Router/Firewall
+
+### 7. Start the Server
+
+Type the command in the console to start the server. [Troubleshooting](#Troubleshooting)
+```console 
+. start_survival.sh
+```
+---
+<a name="requirements"></a>
+## Where to run the Docker Container 🐳
+
+We recommand a Linux Server eg. Ubuntu Server. 
+
+## General Docker info and commands for beginners
+
+To make it a bit easier for you to start with Docker, we made a few examples on how to work with the containers
+
+Get logs from the container (example: on watchtower you can check the next run)
+"docker logs containername" gives you the output on what is going on inside the container named "watchtower"
+```console
+docker logs watchtower
+```
+This should give you something similar to 
+```console
+time="2021-12-28T10:46:28Z" level=info msg="Watchtower 1.3.0\nUsing no notifications\nChecking all containers (except explicitly disabled with label)\nScheduling first run: 2021-12-29 10:00:00 +0000 UTC\nNote that the first check will be performed in 23 hours, 13 minutes, 31 seconds"
+```
+
+For the sandstorm server (named sandstorm) with many logs you can limit it to the last 20 lines
+
+```console
+docker logs --tail=20 sandstorm
+```
+
+Stop a container named "sandstorm"
+```console
+docker stop sandstorm
+```
+
+Delete a stopped container named "sandstorm"
+```console
+docker rm sandstorm
+```
+
+show the status of all containers
+```console
+docker ps
+```
+
+show the LIVE stats of all containers (CPU, Memory, Traffic,...)
+```console
+docker stats
+```
+
+show all docker images that are localy available. Here you get the ImageID for the next command
+```console
+docker images -a
+```
+
+Delete a specific docker image (not needed with watchtower)
+```console
+docker image rm ImageID
+```
+
+The following parameter which is used here makes sure, the container is always started on server reboot where the container is running and also restarts the container if inside the container the gamen crashes or shutsdown
+
+```console
+--restart=always
+```
+
+
+## How to get the docker image
+
+Run this command to download the image. The script we provide will download it anyway if it's not exist.
+
+```console 
 docker pull snickch/insurgencysandstormdedicatedserver
 ```
-Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/requirements#docker-image) about this topic. 
 
-# Troubleshooting
-Read our [Wiki](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/wiki/Troubleshooting) about this topic. 
+## Update(s)
 
-# Project status
+Autobuilds will run on daily base for latest. If there is a server update from Insurgency Sandstorm I will trigger the build earlier if possible.
+
+The idea is to use this the “container way” to just replace the container instead of updating anything inside the container. Your data will be static and will be loaded in the new container (if configured correctly with the ``` docker run``` command). This makes it even faster for you. You can pull the newest image and during the download your “old” container is still running. Then you can just recreate the container and that’s it. It works perfectly with watchtower. I use the watchtower image from containrrr/watchtower. 
+	
+Example of my docker-compose.yml for watchtower. Make sure you use the correct "schedule" parameters. In this example it will always at 8am check for new images, download them (if available) and then restart the container. Be aware that the container will be forcibly shutdown - if players are on the server they might not find it very amazing ;)
+
+This is a single command that starts watchtower. It will check for new images, download them (if available) and then restart all containers that have new images available. In my example this is done at 21:11:10 (9pm,11min and 10seconds) to show you how to use the schedule parameter. The schedule parameter is the only thing you should change, use the rest 1:1.
+
+> **_NOTE:_**  The Image has about 3.9GB Make sure your download plan is capable of this.
+
+```console
+docker run -d --restart=always --name watchtower --volume /var/run/docker.sock:/var/run/docker.sock containrrr/watchtower --schedule="10 11 21 * * *" --cleanup --rolling-restart --include-stopped --revive-stopped
+```
+
+
+This is the docker-compose.yml file, if you like to use docker-compose instad of docker run. If you use the above command to run watchtower, you don't need this yml file. If you don't know what docker-compose is or how to use it, stick to the above command to run watchtower
+
+```yaml
+version: "3" 
+services:
+   watchtower:
+    image: containrrr/watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --schedule "10 11 21 * * *" --cleanup --rolling-restart --include-stopped --revive-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+```
+The Watchtower documentation from containrrr: https://containrrr.dev/watchtower/arguments/
+
+Cron Job scheduler information for your time: https://pkg.go.dev/github.com/robfig/cron@v1.2.0#hdr-CRON_Expression_Format
+
+The script above run at 21:11:10 every day in the whole year (9pm,11min and 10seconds).
+
+|Seconds|Minutes|Hours|Day of month|Month|Day of week|
+|-------|-------|-----|------------|-----|-----------|
+|10|11|21|*|*|*|
+	
+
+## Game realted  topics
+
+<a name="tokens"></a>
+### Game Tokens
+
+You need 3 Tokens to run the Server properly.
+
+
+   
+```GSLTTOKEN```   
+```GAMESTATSTOKEN```  
+```GAMEPORT```   
+```QUERRYPORT```
+
+
+
+##### GSLTTOKEN
+
+This Token comes from Steam and verify you as Insurgency Sandstorm Server   
+in _[start_survival.sh](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/blob/master/Examples/Survival_Mods/start_survival.sh)_   
+https://steamcommunity.com/dev/managegameservers   
+App-ID:581320   
+```GSLTTOKEN="XXXXXXXX"```
+
+##### GAMESTATSTOKEN
+This Token enables official XP gain     
+in _[start_survival.sh](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/blob/master/Examples/Survival_Mods/start_survival.sh)_   
+https://gamestats.sandstorm.game/    
+```GAMESTATSTOKEN="XXXXXXXX"```
+
+##### MOD.IO
+
+For running custom Mods or Maps.   
+in _[Engine.ini](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/blob/master/Examples/Survival_Mods/Engine.ini)_    
+https://mod.io/apikey/   
+```AccessToken=XXXXXXXXXXXXXXX```    
+```bHasUserAcceptedTerms=True```    
+
+
+### Examples
+
+You can use these Examples for running different Game Modes.
+
+* [Survival with Mods](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/tree/master/Examples/Survival_Mods)
+
+### RCON
+
+With Rcon you can remote manage your server, change maps, ban user, etc.
+We recommend this tool.  
+[ISRT on GitHub](https://github.com/olli-e/ISRT) or [ISRT Website](https://www.isrt.info/)
+Add this to your ``` Game.ini ``` and change the ports, add a password. Make sure that this is the same port (rcon) as in the script (variable: ```RCONPORT```).
+```ini
+[Rcon]
+bEnabled=True
+Password=superStrongPassword
+ListenPort=22722
+bAllowConsoleCommands=True
+```
+### Demo Servers
+
+Feel free to test it
+
+* [AUT] n0ri's Leberkas-Palace #1\<Checkpoint Mods>
+* [AUT] n0ri's Leberkas-Palace #2\<Outpost Mods>
+* [AUT] n0ri's Leberkas-Palace #3\<Survival Mods>
+* [AUT] n0ri's Leberkas-Palace #4\<Survival Vanilla>
+
+### Files
+#### Game.ini
+
+**Servername in Game Search**  
+
+```ini
+[/Script/Insurgency.INSGameMode]
+ServerHostname="[sn!ck[CH]] my first Insurgency Server"
+Rulesets = ""
+```
+**MaxPlayers for the Server**  
+
+```ini
+[/Script/Engine.GameSession]
+MaxPlayers=20
+MaxSpectators=0
+```
+
+#### Engine.ini
+
+Here goes the mod.io API-Key and some mods (Medic Demo) requires some additional setup here.
+
+#### Mods.txt
+
+In this File you need to add the Mod-IDs from https://mod.io
+Some mods require Mutators add to the ```MUTATORS=``` in _[start_survival.sh](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/blob/master/Examples/Survival_Mods/start_survival.sh)_ 
+
+#### Admins.txt
+
+Enter the [SteamID64](https://www.steamidfinder.com/) of the Steam Account you want to be in-Game Admin.
+
+#### MapCycle.txt
+
+Change the Maps you wanna play here. If you add a new Map by mod, you need to enter it here as well.
+
+---
+
+## Troubleshooting
+
+### File and Folder permissions
+
+If your server doesn't start with Mods or without settings, make sure that all the files (```Game.ini``` etc.) and the "Mods" Folder have the correct user permission. You can change the permissions with the ```chwon``` command. Make sure you replace USER and GROUP with your information.
+
+```console
+chown USER:GROUP Game.ini Mods Engine.ini Admins.txt Mods.txt MapCycle.txt
+```
+
+Example how it should look, if your user is debian with the group debian
+
+```console
+-rw-r--r-- 1 debian debian   87 Dec 13 17:10 Admins.txt
+-rw-r--r-- 1 debian debian 1.8K Dec 14 15:20 Engine.ini
+-rw-r--r-- 1 debian debian  22K Dec 21 19:12 Game.ini
+-rw-r--r-- 1 debian debian 5.5K Dec 14 17:22 MapCycle.txt
+-rw-r--r-- 1 debian debian   82 Dec 14 17:22 Mods.txt
+```
+
+How it looked when it was wrong, because I created the Admins.txt with root
+```console
+-rw-r--r-- 1 root   root     87 Dec 13 17:10 Admins.txt
+-rw-r--r-- 1 debian debian 1.8K Dec 14 15:20 Engine.ini
+-rw-r--r-- 1 debian debian  22K Dec 21 19:12 Game.ini
+-rw-r--r-- 1 debian debian 5.5K Dec 14 17:22 MapCycle.txt
+-rw-r--r-- 1 debian debian   82 Dec 14 17:22 Mods.txt
+```
+
+### Filesize Issue    
+
+You run out of space on your Ubuntu Server but you gave it 40GB space?
+Maybe there ist some bad LVM setting. This worked on my machine (20.04.3).    
+[Ubuntu Server 18.04 LVM out of space with improper default partitioning](https://askubuntu.com/a/1117523)
+ 
+### Generic ```command not found``` Issue
+
+if your message looks like this, there could be an issue with the start file itself and the linebreaks in it.
+
+```console
+gameadmin@isdsdocker:~/insurgency$ . start_deathmatch.sh
+docker container will be stopped
+Error response from daemon: No such container: isd_deathmatch
+docker container will be removed
+Error: No such container: isd_test2
+start docker container
+"docker run" requires at least 1 argument.
+See 'docker run --help'.
+
+Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+Run a command in a new container
+--volume: command not found
+--volume: command not found
+--volume: command not found
+--volume: command not found
+--volume: command not found
+--volume: command not found
+: No such file or directoryndstormdedicatedserver:latest
+-Rcon: command not found
+-Mods: command not found
+: command not found
+: command not foundo=Ministry?Scenario=Scenario_Ministry_Checkpoint_Security?lighting=day
+: command not foundD2594252345243527BCB34524A46
+```
+As you see below the file which doesn't work has [CRLF](https://en.wikipedia.org/wiki/Newline#Representation) in it.
+
+```console
+gameadmin@isdsdocker:~/insurgency$ file start_deathmatch.sh start_checkpoint.sh
+start_deathmatch.sh: ASCII text, with CRLF line terminators
+start_checkpoint.sh: ASCII text
+```
+
+Create a new file with ```nano newfilename.sh ``` and copy the content from old one in this.
+
+
+---
+
+## Project status
 
 This is my first docker project. If you need more information, find a bug or mistakes in the documentation it is very appreciated if you contact me. If you need support it would be the best if you create a new thread in the steam discussion for dedicated servers and first check that it is not an general server issue (related to steamcmd or the game). If you think it is a container related issue (based on my image) feel free to contact me.
 
 
-## Timeline
-02.January 2022 - Snick: Happy new year! We are working on a easier to read documentation and published the first version. 
-
-30.December 2021 - n0ri; activate the wiki and remove the Wall of text from the Readme.
-
-29.December 2021 - n0ri; Added the RCON with ISRT, Remove RCON from start script, added it to the ```Game.ini```
-
-28.December 2021 - [n0ri](https://github.com/N0rimaki) joined as a contributor. Thank you very much for updating the documentation, all the testing and for your inputs. The documentation is now cleaner and easier to get startet. Now documented watchtower run command and beginner friendly info on how to manage the container
-
-27.December 2021 - I made the script a bit easier (I will continue to make it easier and document a simpler version for watchtower)
-
-19.December 2021 - Updated the docker-compose.yml for watchtower
-
-26.November 2021 - I added a howto for Watchtower, so the container is automatically updated. No need for any scripts and cron jobs. 
-
+### Timeline
+07.January 2022 - n0ri; Add example files, make Quick Start - tl;dr   
+02.January 2022 - Snick; Happy new year! We are working on a easier to read documentation and published the first version. 
+29.December 2021 - n0ri; Added the RCON with ISRT, Remove RCON from start script, added it to the ```Game.ini```.  
+28.December 2021 - [n0ri](https://github.com/N0rimaki) joined as a contributor. Thank you very much for updating the documentation, all the testing and for your inputs. The documentation is now cleaner and easier to get startet. Now documented watchtower run command and beginner friendly info on how to manage the container.  
+27.December 2021 - I made the script a bit easier (I will continue to make it easier and document a simpler version for watchtower).  
+19.December 2021 - Updated the docker-compose.yml for watchtower.  
+26.November 2021 - I added a howto for Watchtower, so the container is automatically updated. No need for any scripts and cron jobs.  
 23.March 2021 - Thanks to jcoker85 I corrected the path in the readme to the .ini files. Now they should be correct and can be copied 1:1 from the example.
 
 24.July 2020 - I started on working on a baseline image for steamcmd. The testing branche (:test) is already using it. So new images can build up on this image and will reduce the build time. On the other hand verybody can now use my daily updated steamcmd image for any kind of dedicated servers. On the test branch I'm now working on optimizing the image to get less layers to improve the container space and layer usage. https://hub.docker.com/r/snickch/steamcmd
@@ -191,4 +418,3 @@ At the moment there are no known issues
 ## Future considerations
 The image works as planned. There is a lot of documentation. In my opinion there is nothing to consider at the moment. 
 The only thing that could follow in the future is a docker-compose example, as soon as I have to change my VM where the server runs. If you have a working docker-compose example, feel free to open an issue so I can add it to the decription.
-
