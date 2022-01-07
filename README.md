@@ -204,15 +204,11 @@ The script above run at 21:11:10 every day in the whole year (9pm,11min and 10se
 <a name="tokens"></a>
 ### Game Tokens
 
-You need 3 Tokens to run the Server properly.
-
-
+You need 3 Tokens to run the Server properly and to find it in the Community Server and gain XP.
    
 ```GSLTTOKEN```   
 ```GAMESTATSTOKEN```  
-```GAMEPORT```   
-```QUERRYPORT```
-
+```AccessToken```   
 
 
 ##### GSLTTOKEN
@@ -235,7 +231,6 @@ For running custom Mods or Maps.
 in _[Engine.ini](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/blob/master/Examples/Survival_Mods/Engine.ini)_    
 https://mod.io/apikey/   
 ```AccessToken=XXXXXXXXXXXXXXX```    
-```bHasUserAcceptedTerms=True```    
 
 
 ### Examples
