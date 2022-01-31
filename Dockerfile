@@ -2,7 +2,7 @@
 # Dockerfile that builds a Insurgency Sandstorm Gameserver 
 #(Steam App ID 581330)
 #Version 0.2
-#Author: SnickCH - snick@morea.ch
+#Author: SnickCH
 ###########################################################
 #Use debian:buster as the base image
 FROM debian:buster-slim
