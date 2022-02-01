@@ -252,7 +252,7 @@ Password=superStrongPassword
 ListenPort=22722
 bAllowConsoleCommands=True
 ```
-### Demo Servers
+### Demo Servers that use our images
 
 Feel free to test it
 
@@ -260,7 +260,11 @@ Feel free to test it
 * [AUT] n0ri's Leberkas-Palace #2\<Outpost Mods>
 * [AUT] n0ri's Leberkas-Palace #3\<Survival Mods>
 * [AUT] n0ri's Leberkas-Palace #4\<Survival Vanilla>
+* [Hardcore ISMC] DustinDerDachs HardAI GERMAN lessMods [Event]
+* [Hardcore ISMC] DustinDerDachs HardcoreAI GERMAN manyMods [Extra]
+* [ISMC] DustinDerDachs GERMAN lessMods [PvP]
 
+You use our image and want your server listed here? contact us :)
 ### Files
 #### Game.ini
 
