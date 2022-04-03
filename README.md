@@ -283,8 +283,13 @@ MaxPlayers=20
 MaxSpectators=0
 ```
 
-#### Engine.ini
+ #### ~~~Engine.ini~~~
 
+~~~Here goes the mod.io API-Key and some mods (Medic Demo) requires some additional setup here.~~~
+
+#### GameUserSettings.ini
+
+NWI Changed it from the ```Engine.ini``` to the ```GameUserSettings.ini```.
 Here goes the mod.io API-Key and some mods (Medic Demo) requires some additional setup here.
 
 #### Mods.txt
@@ -309,14 +314,14 @@ Change the Maps you wanna play here. If you add a new Map by mod, you need to en
 If your server doesn't start with Mods or without settings, make sure that all the files (```Game.ini``` etc.) and the "Mods" Folder have the correct user permission. You can change the permissions with the ```chwon``` command. Make sure you replace USER and GROUP with your information.
 
 ```console
-chown USER:GROUP Game.ini Mods Engine.ini Admins.txt Mods.txt MapCycle.txt
+chown USER:GROUP Game.ini Mods GameUserSettings.ini Admins.txt Mods.txt MapCycle.txt
 ```
 
 Example how it should look, if your user is debian with the group debian
 
 ```console
 -rw-r--r-- 1 debian debian   87 Dec 13 17:10 Admins.txt
--rw-r--r-- 1 debian debian 1.8K Dec 14 15:20 Engine.ini
+-rw-r--r-- 1 debian debian 1.8K Dec 14 15:20 GameUserSettings.ini
 -rw-r--r-- 1 debian debian  22K Dec 21 19:12 Game.ini
 -rw-r--r-- 1 debian debian 5.5K Dec 14 17:22 MapCycle.txt
 -rw-r--r-- 1 debian debian   82 Dec 14 17:22 Mods.txt
@@ -325,7 +330,7 @@ Example how it should look, if your user is debian with the group debian
 How it looked when it was wrong, because I created the Admins.txt with root
 ```console
 -rw-r--r-- 1 root   root     87 Dec 13 17:10 Admins.txt
--rw-r--r-- 1 debian debian 1.8K Dec 14 15:20 Engine.ini
+-rw-r--r-- 1 debian debian 1.8K Dec 14 15:20 GameUserSettings.ini
 -rw-r--r-- 1 debian debian  22K Dec 21 19:12 Game.ini
 -rw-r--r-- 1 debian debian 5.5K Dec 14 17:22 MapCycle.txt
 -rw-r--r-- 1 debian debian   82 Dec 14 17:22 Mods.txt
