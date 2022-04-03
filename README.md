@@ -54,7 +54,7 @@ You will need to adjust the Permissions
 replace user and usergroup with your setup. Normaly both are just your username. If your user is "gameadmin" you use "gameadmin:gameadmin"
 
 ```console 
-chown user:usergroup Game.ini Mods Engine.ini Admins.txt Mods.txt MapCycle.txt 
+chown user:usergroup Game.ini Mods GameUserSettings.ini Admins.txt Mods.txt MapCycle.txt 
 ```
 
 ### 5. Change the values of the variables
@@ -67,7 +67,7 @@ in _[start_survival.sh](https://github.com/SnickCH/InsurgencySandstormDedicatedS
 ```GAMEPORT```   
 ```QUERRYPORT```
 
-in _[Engine.ini](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/blob/master/Examples/Survival_Mods/Engine.ini)_   
+in _[GameUserSettings.ini](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/blob/master/Examples/Survival_Mods/GameUserSettings.ini)_   
 mod.io API-Key
 
 in _[Game.ini](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/blob/master/Examples/Survival_Mods/Game.ini)_   
@@ -228,7 +228,7 @@ https://gamestats.sandstorm.game/
 ##### MOD.IO
 
 For running custom Mods or Maps.   
-in _[Engine.ini](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/blob/master/Examples/Survival_Mods/Engine.ini)_    
+in _[GameUserSettings.ini](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/blob/master/Examples/Survival_Mods/GameUserSettings.ini)_    
 https://mod.io/apikey/   
 ```AccessToken=XXXXXXXXXXXXXXX```    
 
@@ -283,9 +283,9 @@ MaxPlayers=20
 MaxSpectators=0
 ```
 
- #### ~~~Engine.ini~~~
+ #### ~~Engine.ini~~
 
-~~~Here goes the mod.io API-Key and some mods (Medic Demo) requires some additional setup here.~~~
+~~Here goes the mod.io API-Key and some mods (Medic Demo) requires some additional setup here.~~
 
 #### GameUserSettings.ini
 
