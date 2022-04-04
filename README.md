@@ -391,6 +391,7 @@ This is my first docker project. If you need more information, find a bug or mis
 
 
 ### Timeline
+04. April 2022 - n0ri added the new configuration for the GameUserSettings.ini files (NWI changed this in the background). Make sure you update your .ini files and start scripts for your servers
 07.January 2022 - n0ri; Add example files, make Quick Start - tl;dr   
 02.January 2022 - Snick; Happy new year! We are working on a easier to read documentation and published the first version. 
 29.December 2021 - n0ri; Added the RCON with ISRT, Remove RCON from start script, added it to the ```Game.ini```.  
