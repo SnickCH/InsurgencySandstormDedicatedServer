@@ -23,7 +23,7 @@ GSLTTOKEN="XXXXXXXXXXX"
 GAMESTATSTOKEN="YYYYYYYYYYY"
 
 #Set your mutators for the server you will get it from https://mod.io
-#You need an API-Key from https://mod.io/apikey/ which goes to the Engine.ini 
+#You need an API-Key from https://mod.io/apikey/ which goes to the GameUserSettings.ini (Engine.ini is depreciated) 
 MUTATORS="Medic,ImprovedAI,ScaleSurvival,Vampirism,sBomber,PrintCount,JoinLeaveMessage,MoreAmmo"
 
 #Set the map which should be used on start (ModDownloadTravelTo makes sure your mods are started with the first map and the MaxPlayer you want)
