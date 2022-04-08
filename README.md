@@ -93,7 +93,7 @@ Type the command in the console to start the server. [Troubleshooting](#Troubles
 <a name="requirements"></a>
 ## Where to run the Docker Container 🐳
 
-We recommand a Linux Server eg. Ubuntu Server. 
+We recommand a Linux Server eg. Ubuntu Server. Docker must be installed on this host https://docs.docker.com/engine/install/
 
 ## General Docker info and commands for beginners
 
