@@ -7,7 +7,7 @@ This repository contains a docker image with a dedicated server for Insurgency S
 Key features 
 - Daily updated image
 - Ready to use (no additonal downloads needed for vanilla server, only mods download)
-- Mody are fully supported and working
+- Mods are fully supported and working
 - Scripts for easy starts, automated image update (*1) and game config examples provided
 - Project with acive maintainers (N0rimaki, Snick) if you have questions or suggestions
 - Nothing to update inside the container (*1)
@@ -28,10 +28,13 @@ Here you can check the last update on the container (yes, the project is still m
 
 All you need to know for the quick start, read the rest another day. It's okay!
 
-### 1. You need a Linux Host for the docker container
+### 1. You need a Linux Host with docker for the docker container
 
 For this example the Linux-user ist _gameadmin_ and the game-root-folder is _/home/gameadmin/insurgeny/_   
 Server [requirements](#requirements)   
+
+Install docker for your Linux OS. Example for Debian: https://docs.docker.com/engine/install/debian/
+All distros: https://docs.docker.com/engine/install/
 
 
 ### 2. Copy the Example
