@@ -1,0 +1,32 @@
+#This is a docker-compose yaml provided by "Th3irdEye" (Thank you very much for sharing). No warranty or support form our repository
+
+sandstorm:
+    image: snickch/insurgencysandstormdedicatedserver:latest
+    container_name: sandstorm
+    restart: always
+    ports:
+      - 27103:27103/tcp
+      - 27103:27103/udp
+      - 27133:27133/tcp
+      - 27133:27133/udp
+      - 29093:29093/tcp
+      - 29093:29093/udp
+    volumes:
+      - /path/to/config/data/Game.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/Game.ini:ro
+      - /path/to/config/data/GameUserSettings.ini:/home/steam/steamcmd/sandstorm/Insurgency/Saved/Config/LinuxServer/GameUserSettings.ini:ro
+      - /path/to/config/data/Admins.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/Admins.txt:ro
+      - /path/to/config/data/Mods.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/Mods.txt:ro
+      - /path/to/config/data/MapCycle.txt:/home/steam/steamcmd/sandstorm/Insurgency/Config/Server/MapCycle.txt:ro
+      - /path/to/mod/data/Mods/:/home/steam/steamcmd/sandstorm/Insurgency/Mods
+    entrypoint: ./InsurgencyServer-Linux-Shipping
+    command:
+      -Port=27103
+      -QueryPort=27133
+      -Mods
+      -Rcon
+      -Mutators="Medic,ImprovedAI,ScaleSurvival,Vampirism,sBomber,PrintCount,JoinLeaveMessage,MoreAmmo"
+      -ModDownloadTravelTo="Gap?Scenario=Scenario_Gap_Survival?lighting=day"
+      -GSLTToken=YOURGSLTTOKEN
+      -GameStatsToken=YOURGAMESTATSTOKEN
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
