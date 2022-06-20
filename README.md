@@ -390,18 +390,28 @@ Create a new file with ```nano newfilename.sh ``` and copy the content from old 
 
 ## Project status
 
-This is my first docker project. If you need more information, find a bug or mistakes in the documentation it is very appreciated if you contact me. If you need support it would be the best if you create a new thread in the steam discussion for dedicated servers and first check that it is not an general server issue (related to steamcmd or the game). If you think it is a container related issue (based on my image) feel free to contact me.
+This was my first docker project. If you need more information, find a bug or mistakes in the documentation it is very appreciated if you contact me. If you need support it would be the best if you create a new thread in the steam discussion for dedicated servers and first check that it is not an general server issue (related to steamcmd or the game). If you think it is a container related issue (based on our image) feel free to contact us.
 
 
 ### Timeline
+20.June 2022 - Thank you very much "Th3irdEye" for providing a docker-compose exmaple. It's now added to the project.
+
 04.April 2022 - n0ri added the new configuration for the GameUserSettings.ini files (NWI changed this in the background). Make sure you update your .ini files and start scripts for your servers
+
 07.January 2022 - n0ri; Add example files, make Quick Start - tl;dr   
+
 02.January 2022 - Snick; Happy new year! We are working on a easier to read documentation and published the first version. 
+
 29.December 2021 - n0ri; Added the RCON with ISRT, Remove RCON from start script, added it to the ```Game.ini```.  
+
 28.December 2021 - [n0ri](https://github.com/N0rimaki) joined as a contributor. Thank you very much for updating the documentation, all the testing and for your inputs. The documentation is now cleaner and easier to get startet. Now documented watchtower run command and beginner friendly info on how to manage the container.  
+
 27.December 2021 - I made the script a bit easier (I will continue to make it easier and document a simpler version for watchtower).  
+
 19.December 2021 - Updated the docker-compose.yml for watchtower.  
+
 26.November 2021 - I added a howto for Watchtower, so the container is automatically updated. No need for any scripts and cron jobs.  
+
 23.March 2021 - Thanks to jcoker85 I corrected the path in the readme to the .ini files. Now they should be correct and can be copied 1:1 from the example.
 
 24.July 2020 - I started on working on a baseline image for steamcmd. The testing branche (:test) is already using it. So new images can build up on this image and will reduce the build time. On the other hand verybody can now use my daily updated steamcmd image for any kind of dedicated servers. On the test branch I'm now working on optimizing the image to get less layers to improve the container space and layer usage. https://hub.docker.com/r/snickch/steamcmd
@@ -424,5 +434,4 @@ This is my first docker project. If you need more information, find a bug or mis
 At the moment there are no known issues
 
 ## Future considerations
-The image works as planned. There is a lot of documentation. In my opinion there is nothing to consider at the moment. 
-The only thing that could follow in the future is a docker-compose example, as soon as I have to change my VM where the server runs. If you have a working docker-compose example, feel free to open an issue so I can add it to the decription.
+The image works as planned. There is a lot of documentation. In my opinion there is nothing to consider at the moment. If you have inputs or issues feel free to open an issue ticket here on github.
