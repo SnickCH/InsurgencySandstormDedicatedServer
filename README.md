@@ -5,7 +5,7 @@
 This repository contains a docker image with a dedicated server for Insurgency Sandstorm (vanilla) that you can fully customise to your need for coop and PVP servers. 
 
 Key features 
-- Daily updated image
+- Daily updated image (06.Nov.2023: At the moment it can be, that the image is 1-7 days old, because of some limitation we have)
 - Ready to use (no additonal downloads needed for vanilla server, only mods download)
 - Mods are fully supported and working
 - Scripts for easy starts, automated image update (*1) and game config examples provided
@@ -394,6 +394,8 @@ This was my first docker project. If you need more information, find a bug or mi
 
 
 ### Timeline
+06.November 2023 - Edited the intro page. At the moment the image is 1-7 days old (not all daily build work as planned, because of some limitations)
+
 20.June 2022 - Thank you very much "Th3irdEye" for providing a docker-compose exmaple. It's now added to the project.
 
 04.April 2022 - n0ri added the new configuration for the GameUserSettings.ini files (NWI changed this in the background). Make sure you update your .ini files and start scripts for your servers
