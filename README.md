@@ -394,7 +394,9 @@ This was my first docker project. If you need more information, find a bug or mi
 
 
 ### Timeline
-06.November 2023 - Edited the intro page. At the moment the image is 1-7 days old (not all daily build work as planned, because of some limitations)
+06.November 2023 - changed the image to buster-slim and replaced some packages to newer ones, so we are up to date (based on an issue that was opened).
+
+06.November 2023 - Edited the intro page. At the moment the image is 1-7 days old (not all daily build work as planned, because of some limitations). 
 
 20.June 2022 - Thank you very much "Th3irdEye" for providing a docker-compose exmaple. It's now added to the project.
 
