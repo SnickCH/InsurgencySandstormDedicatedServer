@@ -394,7 +394,7 @@ This was my first docker project. If you need more information, find a bug or mi
 
 
 ### Timeline
-13.February 2024 - We will keep the daily update running (no changes), so you can use our image. We now even have the security scanning of our container activated on docker-hub to make sure you now what security issues could be in the image. We will no longer provide new config files examples for your server like the "Game.ini" etc. (the last one are about 2 years old), because we don't run any server anymore and we can't keep track on all the changes and the impact on the behavior (Bots etc.). The image works (no feedback that it doesn't) and the examples are a good starting point. Just to clarify the situation on this project.
+13.February 2024 - We will keep the daily update running (no changes), so you can use our image. We now even have the security scanning of our container activated on docker-hub to make sure you know what security issues could be in the image. We will no longer provide new config files examples for your server like the "Game.ini" etc. (the last one are about 2 years old), because we don't run any server anymore and we can't keep track on all the changes and the impact on the behavior (Bots etc.). The image works (no feedback that it doesn't) and the examples are a good starting point. Just to clarify the situation on this project.
 
 06.November 2023 - changed the image to buster-slim and replaced some packages to newer ones, so we are up to date (based on an issue that was opened).
 
