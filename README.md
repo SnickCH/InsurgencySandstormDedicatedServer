@@ -1,7 +1,21 @@
 ![](https://github.com/SnickCH/InsurgencySandstormDedicatedServer/blob/master/sandstorm-logo.png)
 [![DockerHub Badge](http://dockeri.co/image/snickch/insurgencysandstormdedicatedserver)](https://hub.docker.com/r/snickch/insurgencysandstormdedicatedserver/)
 
-## Insurgency Sandstorm – customisable dedicated server 🎮 🐳
+##  We are urgently looking for testers to provide feedback (e.g., on image changes).
+As announced a long time ago, we no longer use this image ourselves (we don’t have any servers online anymore).
+However, we still build and publish new images for the community on a daily basis.
+Unfortunately, this also means we are no longer able to test the images ourselves.
+We are therefore urgently looking for testers or “supporters” who can provide immediate feedback whenever something is not working as expected.
+It would also be very helpful if we could reach out to testers directly to verify specific branches before we release major changes to the latest image.
+Note:
+If we do not find active testers, we will still publish new images — but without testing.
+Disclaimer:
+The only changes we continue to make are security-related (e.g., updating libraries and dependencies).
+
+
+
+
+# Insurgency Sandstorm – customisable dedicated server 🎮 🐳
 This repository contains a docker image with a dedicated server for Insurgency Sandstorm (vanilla) that you can fully customise to your need for coop and PVP servers. 
 
 Key features 
